@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<style>
+  :root{
+    --wbr-dark:#253a63; --wbr-blue:#3b62b0; --wbr-orange:#f0942d; --wbr-orange-pale:#f7c996;
+    --wbr-grey:#8490a7; --wbr-grey-pale:#c8ced8; --wbr-green:#33aa99; --wbr-cyan:#03aeef;
+    --wbr-ink:#1f2d4a; --wbr-mist:#f4f6fa; --wbr-line:#e3e8f0;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Open Sans',system-ui,sans-serif;color:var(--wbr-ink);background:#e7ecf3;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4,h5{font-family:'Lato',system-ui,sans-serif;margin:0;color:var(--wbr-dark);letter-spacing:-0.01em;line-height:1.06;}
+  p{margin:0;}
+  a{color:var(--wbr-blue);text-decoration:none;}
+  a:hover{color:var(--wbr-orange);}
+  .ey{font-family:'Lato',sans-serif;font-weight:700;letter-spacing:.16em;text-transform:uppercase;}
+  .frame{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(30,45,74,.18);border:1px solid rgba(0,0,0,.06);}
+  .navlink{font-weight:600;font-size:15px;color:var(--wbr-dark);transition:color .15s;}
+  .navlink:hover{color:var(--wbr-orange);}
+  .pillar{transition:transform .22s ease, box-shadow .22s ease;}
+  .pillar:hover{transform:translateY(-8px);box-shadow:0 26px 54px rgba(30,45,74,.15);}
+  .pillar:hover .piglobe{transform:rotate(-12deg) scale(1.12);}
+  .feedcard{transition:transform .2s ease, box-shadow .2s ease;}
+  .feedcard:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(30,45,74,.16);}
+  .arrowlink{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-family:'Lato',sans-serif;transition:gap .18s ease;}
+  .arrowlink:hover{gap:14px;}
+  .glowcell{position:relative;border-radius:12px;overflow:hidden;}
+  .glowcell img{width:100%;height:100%;object-fit:cover;display:block;}
+  .glowcell::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(130% 130% at 100% 100%, rgba(240,148,45,.55) 0%, rgba(240,148,45,.24) 26%, rgba(240,148,45,.06) 48%, transparent 66%);}
+  .rtab{font-family:'Open Sans',sans-serif;font-weight:600;font-size:14px;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);padding:10px 20px;border-radius:30px;cursor:pointer;transition:background .15s,color .15s;}
+  .rtab:hover{background:rgba(255,255,255,.22);}
+  .rtab.on{color:var(--wbr-dark);background:#fff;border-color:#fff;font-weight:700;}
+  .hisweep{padding:0 3px;background-image:linear-gradient(var(--hi),var(--hi));background-repeat:no-repeat;background-position:0 100%;background-size:100% 15%;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .35s cubic-bezier(.4,0,.2,1);}
+  .hisweep:hover{background-size:100% 90%;}
+  .photocell{position:relative;border-radius:12px;overflow:hidden;}
+  .photocell img{width:100%;height:100%;object-fit:cover;display:block;}
+  .calrow{transition:background .15s ease;}
+  .calrow:hover{background:var(--wbr-mist);}
+  .calmist .calrow:hover{background:#fff;}
+  .schip{display:inline-flex;align-items:center;gap:8px;font-family:'Open Sans';font-weight:600;font-size:13px;color:var(--wbr-dark);background:#fff;border:1px solid var(--wbr-line);padding:8px 14px;border-radius:30px;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease;}
+  .schip:hover{border-color:var(--wbr-grey-pale);}
+  .schip.on{background:var(--wbr-dark);border-color:var(--wbr-dark);color:#fff;font-family:'Lato';font-weight:700;}
+  .schip-n{font-size:11.5px;opacity:.55;font-variant-numeric:tabular-nums;}
+  .schip.on .schip-n{opacity:.7;}
+  .brandstoggle:hover{border-color:var(--wbr-grey-pale)!important;}
+  .brandcard{transition:box-shadow .18s ease,transform .18s ease;}
+  .brandcard:hover{box-shadow:0 12px 26px rgba(37,58,99,.12);transform:translateY(-2px);}
+  .brandpanel{animation:brandpanel-in .18s ease both;}
+  @keyframes brandpanel-in{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+  /* 3d — locked type scale on the existing Lato / Open Sans pairing */
+  [data-tpl] .frame h1, [data-tpl] .frame h2{font-weight:900;letter-spacing:-0.015em;line-height:1.08;}
+  [data-tpl] .frame h3{font-weight:700;line-height:1.3;letter-spacing:-0.005em;}
+  [data-tpl] .frame p{line-height:1.6;max-width:68ch;}
+  [data-tpl] .frame .ey{font-size:11.5px !important;font-weight:700;letter-spacing:.14em;}
+  [data-tpl] .frame [style*="font-size:60px"]{font-variant-numeric:tabular-nums;letter-spacing:-0.02em;}
+  [data-tpl] .frame [style*="font-size:32px"][style*="font-weight:900"]{font-variant-numeric:tabular-nums;}
+  @keyframes marquee-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none;}
+  .marquee::before{left:0;background:linear-gradient(90deg,#fff,rgba(255,255,255,0));}
+  .marquee::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0));}
+  .marquee-mist::before{background:linear-gradient(90deg,var(--wbr-mist),rgba(244,246,250,0));}
+  .marquee-mist::after{background:linear-gradient(270deg,var(--wbr-mist),rgba(244,246,250,0));}
+  .marquee-track{animation:marquee-scroll 46s linear infinite;}
+  .marquee:hover .marquee-track{animation-play-state:paused;}
+</style>
+</helmet>
+
+<div style="padding:48px;display:flex;justify-content:center;">
+<!-- ============================ OPTION 3D — 3C + COMPETITOR TEARDOWN FIXES ============================ -->
+    <div id="3d" data-tpl="" style="width:1280px;flex:0 0 auto;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span style="background:var(--wbr-dark);color:#fff;font-family:'Lato';font-weight:900;font-size:15px;padding:6px 14px;border-radius:8px;">3d</span>
+        <div><div style="font-family:'Lato';font-weight:900;font-size:19px;color:var(--wbr-dark);">The teardown fixes</div><div style="font-size:13px;color:var(--wbr-grey);">The current direction. 3c plus sector filters on the calendar, a speakers row, sourced sponsor proof, a WBR Insights row, an "Our brands" dropdown in the nav, and the locked nine-step type ladder.</div></div>
+      </div>
+      <div class="frame">
+        <!-- browser bar -->
+        <div style="height:38px;background:#eef1f6;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--wbr-line);">
+          <span style="width:11px;height:11px;border-radius:50%;background:#e0655a;"></span><span style="width:11px;height:11px;border-radius:50%;background:#ecb14a;"></span><span style="width:11px;height:11px;border-radius:50%;background:#63c264;"></span>
+          <span style="margin-left:14px;background:#fff;border:1px solid var(--wbr-line);border-radius:6px;font-size:11.5px;color:var(--wbr-grey);padding:3px 12px;">wbresearch.com</span>
+        </div>
+        <!-- NAV -->
+        <div style="position:relative;background:#fff;border-bottom:1px solid var(--wbr-line);">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 44px;">
+            <div style="display:flex;align-items:center;gap:20px;">
+              <img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Logos/Corporate%20Site%20Logo/wbr-acro.jpg" alt="WBR" style="height:34px;display:block;">
+              <span style="width:1px;height:26px;background:var(--wbr-line);"></span>
+              <button class="brandstoggle" onClick="{{ toggleBrands }}" style="display:inline-flex;align-items:center;gap:9px;border:1px solid var(--wbr-line);background:{{ brandsBg }};color:var(--wbr-dark);font-family:'Lato';font-weight:700;font-size:13px;padding:8px 14px;border-radius:8px;cursor:pointer;">
+                <span style="display:flex;gap:3px;align-items:center;"><span style="width:5px;height:5px;border-radius:1px;background:var(--wbr-blue);"></span><span style="width:5px;height:5px;border-radius:1px;background:var(--wbr-orange);"></span><span style="width:5px;height:5px;border-radius:1px;background:var(--wbr-green);"></span></span>
+                Our brands
+                <i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--wbr-grey);transform:{{ brandsCaret }};display:inline-block;transition:transform .18s ease;"></i>
+              </button>
+            </div>
+            <div style="display:flex;align-items:center;gap:30px;">
+              <a class="navlink">Conferences</a><a class="navlink">Connect Events</a><a class="navlink">WBR Insights</a><a class="navlink">About Us</a>
+              <a style="display:inline-flex;align-items:center;gap:8px;background:var(--wbr-orange);color:#fff;font-weight:700;font-family:'Lato';font-size:15px;padding:11px 20px;border-radius:8px;">Find an event <i class="fa-solid fa-arrow-right" style="font-size:13px;"></i></a>
+            </div>
+          </div>
+          <sc-if value="{{ brandsOpen }}" hint-placeholder-val="{{ false }}">
+            <div class="brandpanel" style="position:absolute;top:100%;left:0;right:0;z-index:30;background:var(--wbr-mist);border-bottom:1px solid var(--wbr-line);box-shadow:0 24px 48px rgba(37,58,99,.14);padding:32px 44px 34px;">
+              <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;">
+                <div>
+                  <div class="ey" style="color:var(--wbr-orange);font-size:11.5px;">The WBR family</div>
+                  <div style="font-family:'Lato';font-weight:900;font-size:21px;color:var(--wbr-dark);margin-top:6px;">40+ event brands, one research house.</div>
+                </div>
+                <a class="arrowlink" style="color:var(--wbr-blue);font-size:15px;">See all brands <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+              <a class="brandcard" style="border:1px solid var(--wbr-line);border-radius:12px;padding:20px;background:#fff;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
+                <div style="height:26px;display:flex;align-items:center;"><img src="uploads/eTail-Palm-Springs-logo-Secondary-Endigo-b929543a.svg" alt="eTail" style="max-height:24px;max-width:150px;object-fit:contain;"></div>
+                <div style="width:26px;height:3px;border-radius:2px;background:var(--wbr-orange);"></div>
+                <div style="color:var(--wbr-grey);font-size:13px;line-height:1.5;">Retail and eCommerce leaders, since 1999.</div>
+                <div style="color:var(--wbr-dark);font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">8 events</div>
+              </a>
+              <a class="brandcard" style="border:1px solid var(--wbr-line);border-radius:12px;padding:20px;background:#fff;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
+                <div style="height:26px;display:flex;align-items:center;"><img src="uploads/logipharma-eu-color-a96224f6.svg" alt="LogiPharma" style="max-height:24px;max-width:150px;object-fit:contain;"></div>
+                <div style="width:26px;height:3px;border-radius:2px;background:var(--wbr-blue);"></div>
+                <div style="color:var(--wbr-grey);font-size:13px;line-height:1.5;">Pharma supply chain, end to end.</div>
+                <div style="color:var(--wbr-dark);font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">5 events</div>
+              </a>
+              <a class="brandcard" style="border:1px solid var(--wbr-line);border-radius:12px;padding:20px;background:#fff;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
+                <div style="height:26px;display:flex;align-items:center;"><img src="uploads/ProcureCon_West_logo_color_2026-f5a822b9.svg" alt="ProcureCon" style="max-height:24px;max-width:150px;object-fit:contain;"></div>
+                <div style="width:26px;height:3px;border-radius:2px;background:var(--wbr-green);"></div>
+                <div style="color:var(--wbr-grey);font-size:13px;line-height:1.5;">Procurement and strategic sourcing.</div>
+                <div style="color:var(--wbr-dark);font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">11 events</div>
+              </a>
+                <a class="brandcard" style="border:1px dashed var(--wbr-grey-pale);border-radius:12px;padding:20px;background:transparent;display:flex;flex-direction:column;justify-content:center;gap:8px;cursor:pointer;">
+                  <div style="font-family:'Lato';font-weight:900;font-size:21px;color:var(--wbr-dark);">+37 more</div>
+                  <div style="color:var(--wbr-grey);font-size:13px;line-height:1.5;">Finance, customer experience, HR, field service and technology.</div>
+                  <div style="color:var(--wbr-blue);font-weight:700;font-size:13px;">Browse the portfolio <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></div>
+                </a>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <!-- HERO full bleed -->
+        <div style="position:relative;height:600px;">
+          <img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/Older%20Events/i-MNGJw2F-XL.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,40,68,.72) 0%,rgba(30,40,68,.34) 46%,rgba(30,40,68,0) 74%);"></div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 72px;max-width:760px;">
+            <div class="ey" style="color:#fff;opacity:.85;font-size:15px;">Worldwide Business Research</div>
+            <h1 style="color:#fff;font-size:64px;font-weight:900;margin-top:18px;">Connecting Leaders.<br>Inspiring Innovation.</h1>
+            <p style="color:#eaf0fb;font-size:19px;line-height:1.55;margin-top:22px;max-width:540px;">For 25 years we've brought the people who move industries into the same room — to meet, learn and build what's next, together.</p>
+            <div style="background:#fff;border-radius:12px;padding:8px;display:flex;gap:8px;margin-top:32px;max-width:560px;box-shadow:0 18px 40px rgba(0,0,0,.28);">
+              <div style="display:flex;align-items:center;gap:10px;flex:1;padding:0 14px;color:var(--wbr-grey);">
+                <i class="fa-solid fa-magnifying-glass" style="font-size:15px;"></i>
+                <input placeholder="Search events, industries, cities…" style="border:0;outline:0;font-family:'Open Sans';font-size:15px;color:var(--wbr-ink);width:100%;padding:12px 0;">
+              </div>
+              <a style="display:inline-flex;align-items:center;background:var(--wbr-orange);color:#fff;font-weight:700;font-family:'Lato';font-size:15px;padding:0 24px;border-radius:8px;">Search</a>
+            </div>
+            <div style="display:flex;gap:9px;margin-top:14px;flex-wrap:wrap;align-items:center;">
+              <span style="font-size:13px;color:#c7d2ea;font-weight:600;">Popular:</span>
+              <span style="font-size:13px;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:5px 12px;border-radius:20px;">Retail &amp; eCommerce</span>
+              <span style="font-size:13px;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:5px 12px;border-radius:20px;">Procurement</span>
+              <span style="font-size:13px;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:5px 12px;border-radius:20px;">Pharma</span>
+              <span style="font-size:13px;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:5px 12px;border-radius:20px;">Finance</span>
+            </div>
+          </div>
+        </div>
+        <!-- NEXT EVENT strip -->
+        <div style="background:var(--wbr-dark);display:flex;align-items:center;gap:20px;padding:16px 72px;color:#fff;">
+          <span class="ey" style="color:var(--wbr-orange);font-size:13px;display:flex;align-items:center;gap:9px;"><span style="width:9px;height:9px;border-radius:50%;background:var(--wbr-orange);box-shadow:0 0 0 4px rgba(240,148,45,.25);"></span>Next up</span>
+          <span style="font-weight:700;font-family:'Lato';font-size:15px;">Retail IT Connect US 2026</span>
+          <span style="color:#aeb9d4;font-size:15px;">Loews Nashville · Aug 1–2, 2026</span>
+          <a style="margin-left:auto;color:#fff;font-weight:700;font-size:15px;" class="arrowlink">View agenda <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+        </div>
+        <!-- INTRO paragraph with hover highlight -->
+        <div style="padding:88px 72px;text-align:center;">
+          <p style="font-family:'Lato';font-weight:400;font-size:32px;line-height:1.34;color:var(--wbr-dark);max-width:940px;margin:0 auto;">Connect with leading minds through
+            <span class="hisweep" style="--hi:var(--wbr-orange-pale);">exciting virtual and in-person conferences</span>,
+            <span class="hisweep" style="--hi:var(--wbr-green);">networking events</span>, and
+            <span class="hisweep" style="--hi:var(--wbr-cyan);">exceptional custom content</span>.</p>
+        </div>
+        <!-- THREE LINES OF BUSINESS — dense band -->
+        <div style="padding:0 72px 84px;">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--wbr-line);padding-top:34px;">
+          <div style="padding:0 34px;">
+            <div style="display:flex;align-items:baseline;gap:12px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--wbr-blue);"></span><h3 style="font-size:21px;">Conferences</h3></div>
+            <p style="color:var(--wbr-grey);font-size:15px;line-height:1.6;margin-top:12px;">Senior-level forums where entire industries gather to set the agenda for the year ahead.</p>
+            <a class="arrowlink" style="color:var(--wbr-blue);margin-top:14px;font-size:15px;">Browse conferences <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+          </div>
+          <div style="padding:0 34px;border-left:1px solid var(--wbr-line);">
+            <div style="display:flex;align-items:baseline;gap:12px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--wbr-green);"></span><h3 style="font-size:21px;">Connect Events</h3></div>
+            <p style="color:var(--wbr-grey);font-size:15px;line-height:1.6;margin-top:12px;">Intimate, 1-to-1 formats that match decision-makers with the solutions they are looking for.</p>
+            <a class="arrowlink" style="color:var(--wbr-green);margin-top:14px;font-size:15px;">See Connect <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+          </div>
+          <div style="padding:0 34px;border-left:1px solid var(--wbr-line);">
+            <div style="display:flex;align-items:baseline;gap:12px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--wbr-cyan);"></span><h3 style="font-size:21px;">WBR Insights</h3></div>
+            <p style="color:var(--wbr-grey);font-size:15px;line-height:1.6;margin-top:12px;">Original research, reports and webinars — the year-round intelligence behind every event.</p>
+            <a class="arrowlink" style="color:var(--wbr-cyan);margin-top:14px;font-size:15px;">Read Insights <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+          </div>
+          </div>
+        </div>
+        <!-- ROUTE BY ROLE -->
+        <div style="background:var(--wbr-dark);padding:72px;">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:34px;gap:40px;">
+            <div>
+              <div class="ey" style="color:var(--wbr-orange);font-size:13px;">Start here</div>
+              <h2 style="font-size:32px;color:#fff;margin-top:12px;">What Brings You to WBR?</h2>
+            </div>
+            <p style="color:#aeb9d4;font-size:15px;line-height:1.6;max-width:380px;">Three ways into the same community. Tell us which one you are and we'll take you straight there.</p>
+          </div>
+          <div style="position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+            <div class="pillar" style="border-radius:14px;overflow:hidden;background:#fff;cursor:pointer;display:flex;flex-direction:column;">
+              <div style="position:relative;height:128px;">
+                <img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/2026/WID01961.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(37,58,99,.15) 0%,rgba(37,58,99,.5) 100%);"></div>
+                <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--wbr-orange);"></div>
+              </div>
+              <div style="padding:28px 30px 30px;display:flex;flex-direction:column;flex:1;">
+                <div style="display:flex;align-items:center;gap:11px;"><i class="fa-solid fa-ticket" style="font-size:15px;color:var(--wbr-grey);"></i><h3 style="font-size:21px;">I Want to Attend</h3></div>
+                <p style="color:var(--wbr-grey);font-size:15px;line-height:1.6;margin-top:10px;">Find the event where your peers set the agenda for the year, and see who is already registered.</p>
+                <a class="arrowlink" style="color:var(--wbr-orange);margin-top:auto;padding-top:20px;font-size:15px;">Browse events <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+              </div>
+            </div>
+            <div class="pillar" style="border-radius:14px;overflow:hidden;background:#fff;cursor:pointer;display:flex;flex-direction:column;">
+              <div style="position:relative;height:128px;">
+                <img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/Older%20Events/i-82VGDBB-X3.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(37,58,99,.15) 0%,rgba(37,58,99,.5) 100%);"></div>
+                <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--wbr-cyan);"></div>
+              </div>
+              <div style="padding:28px 30px 30px;display:flex;flex-direction:column;flex:1;">
+                <div style="display:flex;align-items:center;gap:11px;"><i class="fa-solid fa-microphone-lines" style="font-size:15px;color:var(--wbr-grey);"></i><h3 style="font-size:21px;">I Want to Speak</h3></div>
+                <p style="color:var(--wbr-grey);font-size:15px;line-height:1.6;margin-top:10px;">Put your work in front of the people who will use it. The call for speakers is open across 40+ events.</p>
+                <a class="arrowlink" style="color:var(--wbr-cyan);margin-top:auto;padding-top:20px;font-size:15px;">Submit a topic <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+              </div>
+            </div>
+            <div class="pillar" style="border-radius:14px;overflow:hidden;background:#fff;cursor:pointer;display:flex;flex-direction:column;">
+              <div style="position:relative;height:128px;">
+                <img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/2026/_TEL7022.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(37,58,99,.15) 0%,rgba(37,58,99,.5) 100%);"></div>
+                <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--wbr-green);"></div>
+              </div>
+              <div style="padding:28px 30px 30px;display:flex;flex-direction:column;flex:1;">
+                <div style="display:flex;align-items:center;gap:11px;"><i class="fa-solid fa-newspaper" style="font-size:15px;color:var(--wbr-grey);"></i><h3 style="font-size:21px;">Press &amp; Partners</h3></div>
+                <p style="color:var(--wbr-grey);font-size:15px;line-height:1.6;margin-top:10px;">Media accreditation, association partnerships and access to WBR research under embargo.</p>
+                <a class="arrowlink" style="color:var(--wbr-green);margin-top:auto;padding-top:20px;font-size:15px;">Press centre <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- SPONSOR / AUDIENCE PROOF -->
+        <div style="background:#fff;border-top:1px solid var(--wbr-line);padding:84px 72px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+            <div>
+              <div class="ey" style="color:var(--wbr-orange);font-size:13px;">For sponsors &amp; partners</div>
+              <h2 style="font-size:48px;margin-top:12px;">The Room is the Audience Data.</h2>
+              <p style="color:var(--wbr-grey);font-size:19px;line-height:1.65;margin-top:16px;max-width:500px;">Every WBR delegate is researched and invited by name. That is why the room skews senior, and why sponsors book the next one before the current one ends.</p>
+              <div style="border-left:3px solid var(--wbr-orange);padding:4px 0 4px 20px;margin-top:28px;max-width:500px;">
+                <p style="font-family:'Lato';font-size:19px;line-height:1.45;color:var(--wbr-dark);">"Three of our four largest deals last year started in a WBR meeting room. We book the next event before we leave the current one."</p>
+                <div style="display:flex;align-items:center;gap:12px;margin-top:14px;">
+                  <div><div style="font-weight:700;font-size:15px;color:var(--wbr-dark);">Name, Title</div><div style="color:var(--wbr-grey);font-size:13px;">Sponsor company</div></div>
+                </div>
+              </div>
+              <div style="display:flex;gap:14px;margin-top:30px;">
+                <a style="display:inline-flex;align-items:center;gap:9px;background:var(--wbr-orange);color:#fff;font-weight:700;font-family:'Lato';font-size:15px;padding:14px 26px;border-radius:9px;"><i class="fa-solid fa-download" style="font-size:13px;"></i> Download the media kit <i class="fa-solid fa-arrow-right" style="font-size:13px;"></i></a>
+                <a style="display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--wbr-dark);color:var(--wbr-dark);font-weight:700;font-family:'Lato';font-size:15px;padding:14px 26px;border-radius:9px;">Talk to the team</a>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:190px 190px;gap:14px;">
+              <div class="photocell" style="grid-column:span 2;"><img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/2026/_TEL6242.jpg"></div>
+              <div class="photocell"><img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/Older%20Events/i-4bzSJZv-X3-X2.jpg"></div>
+              <div class="photocell"><img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/2026/WID08325.jpg"></div>
+            </div>
+          </div>
+          <div style="position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin-top:64px;padding-top:44px;border-top:1px solid var(--wbr-grey-pale);">
+            <div style="padding:0 40px;border-right:1px solid var(--wbr-grey-pale);">
+              <div style="font-family:'Lato';font-weight:900;font-size:60px;line-height:1;color:var(--wbr-dark);letter-spacing:-0.02em;">68%</div>
+              <div style="color:var(--wbr-grey);font-size:15px;line-height:1.5;margin-top:12px;">Director level and above</div>
+            </div>
+            <div style="padding:0 40px;border-right:1px solid var(--wbr-grey-pale);">
+              <div style="font-family:'Lato';font-weight:900;font-size:60px;line-height:1;color:var(--wbr-dark);letter-spacing:-0.02em;">12k+</div>
+              <div style="color:var(--wbr-grey);font-size:15px;line-height:1.5;margin-top:12px;">Executives a year, across 100+ events</div>
+            </div>
+            <div style="padding:0 40px;border-right:1px solid var(--wbr-grey-pale);">
+              <div style="font-family:'Lato';font-weight:900;font-size:60px;line-height:1;color:var(--wbr-dark);letter-spacing:-0.02em;">82%</div>
+              <div style="color:var(--wbr-grey);font-size:15px;line-height:1.5;margin-top:12px;">Of sponsors rebook within 12 months</div>
+            </div>
+            <div style="padding:0 40px;">
+              <div style="font-family:'Lato';font-weight:900;font-size:60px;line-height:1;color:var(--wbr-dark);letter-spacing:-0.02em;">30+</div>
+              <div style="color:var(--wbr-grey);font-size:15px;line-height:1.5;margin-top:12px;">Countries represented</div>
+            </div>
+          </div>
+          <p style="color:var(--wbr-grey);font-size:13px;margin-top:20px;">Source: WBR post-event delegate and sponsor surveys, 2025 season (1,412 responses). Figures are placeholders pending the real data.</p>
+        </div>
+        <!-- CALENDAR — date spine -->
+        <div class="calmist" style="padding:84px 72px;background:var(--wbr-mist);border-top:1px solid var(--wbr-line);">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:26px;">
+            <div>
+              <div class="ey" style="color:var(--wbr-orange);font-size:11.5px;">100+ conferences a year</div>
+              <h2 style="font-size:48px;margin-top:12px;">What's on Next</h2>
+            </div>
+            <a class="arrowlink" style="color:var(--wbr-blue);font-size:15px;">Full calendar <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+          </div>
+          <div style="border-top:1px solid var(--wbr-line);">
+            <sc-for list="{{ calNext }}" as="ev" hint-placeholder-count="6">
+              <div class="calrow" style="display:grid;grid-template-columns:132px 1fr auto;align-items:center;border-bottom:1px solid var(--wbr-line);cursor:pointer;">
+                <div style="border-right:1px solid var(--wbr-line);padding:24px 26px 24px 4px;align-self:stretch;display:flex;flex-direction:column;justify-content:center;">
+                  <div class="ey" style="color:var(--wbr-grey);font-size:11.5px;">{{ ev.mon }}</div>
+                  <div style="font-family:'Lato';font-weight:900;font-size:32px;color:var(--wbr-dark);line-height:1.05;margin-top:4px;">{{ ev.days }}</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:26px;padding:20px 26px;">
+                  <div style="width:150px;flex:0 0 auto;display:flex;align-items:center;"><img src="{{ ev.logo }}" style="max-height:30px;max-width:150px;object-fit:contain;"></div>
+                  <div>
+                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span style="color:var(--wbr-dark);font-weight:700;font-family:'Lato';font-size:19px;">{{ ev.name }}</span><span style="font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:{{ ev.regionFg }};background:{{ ev.regionBg }};border-radius:20px;padding:4px 10px;">{{ ev.regionLabel }}</span></div>
+                    <div style="color:var(--wbr-grey);font-size:15px;margin-top:5px;display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;border-radius:2px;flex:0 0 auto;background:{{ ev.color }};"></span>{{ ev.tag }}<i class="fa-solid fa-location-dot" style="font-size:11px;color:var(--wbr-grey-pale);margin-left:4px;"></i>{{ ev.place }}</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:20px 4px 20px 26px;">
+                  <a style="font-weight:700;font-size:13px;color:var(--wbr-dark);border:1px solid var(--wbr-line);padding:8px 15px;border-radius:7px;">Sponsor</a>
+                  <a style="font-weight:700;font-size:13px;color:#fff;background:var(--wbr-blue);padding:8px 15px;border-radius:7px;">Agenda</a>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:30px;"><a style="display:inline-flex;align-items:center;gap:9px;background:var(--wbr-dark);color:#fff;font-weight:700;font-family:'Lato';font-size:15px;padding:14px 28px;border-radius:8px;">View all 100+ events <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a></div>
+        </div>
+        <!-- WBR INSIGHTS -->
+        <div style="padding:84px 72px;background:#fff;border-top:1px solid var(--wbr-line);">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:32px;">
+            <div>
+              <div class="ey" style="color:var(--wbr-cyan);font-size:13px;">WBR Insights</div>
+              <h2 style="font-size:32px;margin-top:12px;">The Research Between the Events.</h2>
+            </div>
+            <a class="arrowlink" style="color:var(--wbr-cyan);font-size:15px;">All reports and webinars <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+          </div>
+          <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:22px;">
+            <div class="pillar" style="border:1px solid var(--wbr-line);border-radius:14px;overflow:hidden;background:#fff;cursor:pointer;display:flex;flex-direction:column;">
+              <div style="position:relative;height:210px;">
+                <img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/2026/WID01961.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+                <span style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,.94);color:var(--wbr-dark);font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;"><i class="fa-solid fa-file-lines" style="font-size:11px;margin-right:6px;"></i>Report</span>
+              </div>
+              <div style="padding:26px 28px 30px;display:flex;flex-direction:column;flex:1;">
+                <h3 style="font-size:21px;line-height:1.2;">The State of Retail Media 2026</h3>
+                <p style="color:var(--wbr-grey);font-size:15px;line-height:1.6;margin-top:10px;">What 180 retail leaders told us about budgets, measurement and where the next dollar goes.</p>
+                <a class="arrowlink" style="color:var(--wbr-cyan);font-size:15px;margin-top:auto;padding-top:20px;">Download <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+              </div>
+            </div>
+            <div class="pillar" style="border:1px solid var(--wbr-line);border-radius:14px;padding:28px;background:#fff;cursor:pointer;display:flex;flex-direction:column;">
+              <div class="ey" style="color:var(--wbr-grey);font-size:11.5px;display:flex;align-items:center;gap:7px;"><i class="fa-solid fa-circle-play" style="font-size:12px;"></i>Webinar · on demand</div>
+              <h3 style="font-size:21px;line-height:1.25;margin-top:14px;">Procurement's AI Mandate: From Pilot to Policy</h3>
+              <p style="color:var(--wbr-grey);font-size:15px;line-height:1.6;margin-top:10px;">45 minutes with three CPOs on what actually made it into production this year.</p>
+              <a class="arrowlink" style="color:var(--wbr-cyan);font-size:15px;margin-top:auto;padding-top:20px;">Watch <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+            </div>
+            <div class="pillar" style="border:1px solid var(--wbr-line);border-radius:14px;padding:28px;background:#fff;cursor:pointer;display:flex;flex-direction:column;">
+              <div class="ey" style="color:var(--wbr-grey);font-size:11.5px;display:flex;align-items:center;gap:7px;"><i class="fa-solid fa-newspaper" style="font-size:12px;"></i>Article</div>
+              <h3 style="font-size:21px;line-height:1.25;margin-top:14px;">Five Supply Chain Shifts the Pharma Sector Is Planning For</h3>
+              <p style="color:var(--wbr-grey);font-size:15px;line-height:1.6;margin-top:10px;">Drawn from the LogiPharma benchmarking panel, published quarterly.</p>
+              <a class="arrowlink" style="color:var(--wbr-cyan);font-size:15px;margin-top:auto;padding-top:20px;">Read <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- COMMUNITY — full bleed -->
+        <div style="background:var(--wbr-mist);padding:84px 0 0;border-top:1px solid var(--wbr-line);">
+          <div style="padding:0 72px;display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:end;margin-bottom:44px;">
+            <div>
+              <div class="ey" style="color:var(--wbr-orange);font-size:13px;">The WBR community</div>
+              <h2 style="font-size:48px;margin-top:14px;max-width:640px;">This is Where<br>The Industry Meets.</h2>
+            </div>
+            <p style="color:var(--wbr-grey);font-size:15px;line-height:1.65;">Rooftop receptions, roundtables and late-night ideas. The room is the product — and it is the one thing that cannot be streamed.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:1.7fr 1fr 1fr;grid-template-rows:270px 190px;gap:8px;">
+            <div class="glowcell" style="grid-row:span 2;border-radius:0;"><img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/Older%20Events/DSC_9338-X3.jpg"></div>
+            <div class="photocell" style="border-radius:0;"><img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/Older%20Events/i-82VGDBB-X3.jpg"></div>
+            <div class="photocell" style="border-radius:0;"><img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/2026/WID08325.jpg"></div>
+            <div class="photocell" style="border-radius:0;"><img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/Older%20Events/i-L7TDpQW-X3.jpg"></div>
+            <div class="photocell" style="border-radius:0;"><img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/Older%20Events/WBR.Digital.Food.Beverage.Connect.StAlbans.2022-044_websize-X3.jpg"></div>
+          </div>
+        </div>
+        <!-- SPONSOR ROTATOR -->
+        <div style="padding:52px 0 58px;background:#fff;border-top:1px solid var(--wbr-line);">
+          <div style="display:flex;align-items:center;gap:32px;">
+            <div class="marquee" style="flex:1;overflow:hidden;position:relative;padding-left:72px;">
+              <div class="marquee-track" style="display:flex;align-items:center;gap:64px;width:max-content;">
+                <sc-for list="{{ brands }}" as="b" hint-placeholder-count="8">
+                  <img src="{{ b }}" style="height:38px;max-width:150px;object-fit:contain;flex:0 0 auto;mix-blend-mode:multiply;">
+                </sc-for>
+                <sc-for list="{{ brands }}" as="b" hint-placeholder-count="8">
+                  <img src="{{ b }}" style="height:38px;max-width:150px;object-fit:contain;flex:0 0 auto;mix-blend-mode:multiply;">
+                </sc-for>
+              </div>
+            </div>
+            <a class="arrowlink" style="color:var(--wbr-dark);font-size:15px;padding-right:72px;flex:0 0 auto;">Sponsor an event <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i></a>
+          </div>
+        </div>
+        <!-- FOOTER -->
+        <div style="background:var(--wbr-dark);color:#fff;padding:64px 72px 40px;border-radius:0 0 16px 16px;">
+          <div style="display:grid;grid-template-columns:300px 1fr;gap:64px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.14);">
+            <div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <span style="position:relative;display:inline-block;width:40px;height:40px;border-radius:50%;overflow:hidden;flex:0 0 auto;"><span style="position:absolute;inset:0;clip-path:polygon(0 0,100% 0,100% 52%,0 74%);background-image:radial-gradient(#5a7fd0 34%,transparent 36%);background-size:6.6px 6.6px;"></span><span style="position:absolute;inset:0;clip-path:polygon(0 76%,100% 54%,100% 100%,0 100%);background-image:radial-gradient(var(--wbr-orange) 34%,transparent 36%);background-size:6.6px 6.6px;"></span></span>
+                <span style="font-family:'Lato';font-weight:900;font-size:21px;color:#fff;letter-spacing:.02em;">WBR</span>
+              </div>
+              <p style="color:#aeb9d4;font-size:15px;line-height:1.6;margin-top:16px;">Worldwide Business Research — the world's biggest name in B2B events.</p>
+              <div style="margin-top:24px;">
+                <div style="font-family:'Lato';font-weight:700;font-size:15px;">The weekly calendar</div>
+                <p style="color:#aeb9d4;font-size:13px;line-height:1.6;margin-top:6px;">What's on, who's speaking, what we published.</p>
+                <div style="display:flex;gap:8px;margin-top:12px;">
+                  <input placeholder="Work email" style="flex:1;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.08);border-radius:8px;color:#fff;font-family:'Open Sans';font-size:15px;padding:11px 14px;outline:0;">
+                  <a style="display:inline-flex;align-items:center;background:var(--wbr-orange);color:#fff;font-weight:700;font-family:'Lato';font-size:15px;padding:0 18px;border-radius:8px;">Sign up</a>
+                </div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;">
+              <div>
+                <div style="font-family:'Lato';font-weight:700;font-size:15px;margin-bottom:14px;">Events</div>
+                <div style="display:flex;flex-direction:column;gap:10px;color:#aeb9d4;font-size:15px;"><span>All conferences</span><span>Connect events</span><span>Webinars</span><span>Event calendar</span></div>
+              </div>
+              <div>
+                <div style="font-family:'Lato';font-weight:700;font-size:15px;margin-bottom:14px;">Industries</div>
+                <div style="display:flex;flex-direction:column;gap:10px;color:#aeb9d4;font-size:15px;"><span>Retail &amp; eCommerce</span><span>Procurement</span><span>Finance</span><span>Supply chain &amp; pharma</span></div>
+              </div>
+              <div>
+                <div style="font-family:'Lato';font-weight:700;font-size:15px;margin-bottom:14px;">Work with us</div>
+                <div style="display:flex;flex-direction:column;gap:10px;color:#aeb9d4;font-size:15px;"><span>Sponsorship</span><span>Speak at an event</span><span>Media kit</span><span>Partnerships</span></div>
+              </div>
+              <div>
+                <div style="font-family:'Lato';font-weight:700;font-size:15px;margin-bottom:14px;">Company</div>
+                <div style="display:flex;flex-direction:column;gap:10px;color:#aeb9d4;font-size:15px;"><span>About WBR</span><span>WBR Insights</span><span>Careers</span><span>Press centre</span><span>Contact</span></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;color:#8194b8;font-size:13px;margin-top:24px;flex-wrap:wrap;gap:16px;">
+            <div style="display:flex;align-items:center;gap:20px;">
+              <span>© 2026 Worldwide Business Research</span>
+              <span style="display:flex;gap:14px;font-size:16px;color:#aeb9d4;"><i class="fa-brands fa-linkedin-in"></i><i class="fa-brands fa-x-twitter"></i><i class="fa-brands fa-youtube"></i></span>
+            </div>
+            <div style="display:flex;gap:26px;"><span>Privacy policy</span><span>Terms</span><span>Cookie preferences</span><span>Modern slavery statement</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { q:'', industry:'All industries', format:'All formats', region:'All regions', brandsOpen:false, sector:'All sectors', calRegion:'All regions' };
+  renderVals() {
+    const P = 'uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/';
+    const L = 'uploads/Corporate%20Website%20Redesign%20Case%20Study/Logos/WBR%20Event%20Logos/';
+    const C = 'uploads/Corporate%20Website%20Redesign%20Case%20Study/Logos/Company%20Logos/';
+    const events = [
+      { name:'eTail Boston 2026', place:'Sheraton Boston, MA', date:'Aug 10–12, 2026', tag:'Retail / eCommerce', color:'var(--wbr-blue)', logo:L+'etail-boston.png', photo:P+'2026/WID01961.jpg' },
+      { name:'Field Service East 2026', place:'JW Marriott Orlando, FL', date:'Aug 10–12, 2026', tag:'Service / Support', color:'var(--wbr-green)', logo:L+'field-service-east.png', photo:P+'2026/_TEL4030.jpg' },
+      { name:'Digital Insurance Connect 2026', place:'Austin Marriott, TX', date:'Aug 17–19, 2026', tag:'Finance', color:'var(--wbr-cyan)', logo:L+'digital-insurance-connect.png', photo:P+'Older%20Events/WBR-FIMA-London-2019-102-X3.jpg' },
+      { name:'InvestOps Asia 2026', place:'One Farrer Hotel, Singapore', date:'Aug 19–20, 2026', tag:'Finance', color:'var(--wbr-blue)', logo:L+'investops-asia.png', photo:P+'2026/_TEL5129.jpg' },
+      { name:'Retail Media Pioneers', place:'London', date:'Sep 8–9, 2026', tag:'Retail', color:'var(--wbr-orange)', logo:L+'retail-media-pioneers.png', photo:P+'2026/WID08325.jpg' },
+      { name:'Retail CIO Connect 2026', place:'Ashridge House, UK', date:'Sep 30 – Oct 1, 2026', tag:'Info Management', color:'var(--wbr-green)', logo:L+'retail-cio-connect.png', photo:P+'Older%20Events/WBR-ProcureCon-IT-Frankfurt-2019-036-X3.jpg' },
+    ];
+    const sectorOf = {
+      'Retail / eCommerce':'Retail & eCommerce', 'Retail':'Retail & eCommerce',
+      'Service / Support':'HR & Field Service', 'Finance':'Finance & Investments',
+      'Info Management':'Technology & Data'
+    };
+    const sectorTotals = [
+      ['Retail & eCommerce',24], ['Procurement & Sourcing',18], ['Supply Chain & Logistics',15],
+      ['Pharma & Life Sciences',11], ['Finance & Investments',13], ['Customer Experience',9],
+      ['Technology & Data',12], ['HR & Field Service',8]
+    ];
+    const calEvents = events.map(ev => {
+      const m = ev.date.match(/^([A-Za-z]{3})\s+(.+?),/);
+      return Object.assign({}, ev, { mon: (m ? m[1] : '').toUpperCase(), days: m ? m[2] : ev.date, sector: sectorOf[ev.tag] || 'Technology & Data' });
+    });
+    const nextUp = [
+      { d:'01', m:'AUG', name:'Retail IT Connect US', place:'Loews Nashville' },
+      { d:'10', m:'AUG', name:'eTail Boston 2026', place:'Sheraton Boston, MA' },
+      { d:'17', m:'AUG', name:'Digital Insurance Connect', place:'Austin, TX' },
+      { d:'19', m:'AUG', name:'InvestOps Asia 2026', place:'Singapore' },
+    ];
+    const brands = [
+      C+'2024_0042_AstraZeneca.svg.jpg', C+'2024_0046_abbvie.jpg', C+'2024_0032_boehringer.jpg',
+      C+'2024_0034_Biogen_logo.svg.jpg', C+'2024_0047_abbot.jpg', C+'2024_0031_Bristol-Myers_Squibb.svg.jpg',
+      C+'2024_0025_ipsen.jpg', C+'2024_0045_accord-logo.jpg',
+    ];
+    const feed = [
+      { name:'eTail Boston 2026', place:'Sheraton Boston, MA', date:'Aug 10–12, 2026', tag:'Retail / eCommerce', fmt:'Conference', logo:L+'etail-boston.png', photo:P+'2026/WID01961.jpg' },
+      { name:'Field Service East 2026', place:'JW Marriott Orlando, FL', date:'Aug 10–12, 2026', tag:'Service / Support', fmt:'Conference', logo:L+'field-service-east.png', photo:P+'2026/_TEL4030.jpg' },
+      { name:'Digital Insurance Connect 2026', place:'Austin Marriott, TX', date:'Aug 17–19, 2026', tag:'Finance', fmt:'Connect', logo:L+'digital-insurance-connect.png', photo:P+'Older%20Events/WBR-FIMA-London-2019-102-X3.jpg' },
+      { name:'InvestOps Asia 2026', place:'One Farrer Hotel, Singapore', date:'Aug 19–20, 2026', tag:'Finance', fmt:'Conference', logo:L+'investops-asia.png', photo:P+'2026/_TEL5129.jpg' },
+      { name:'Retail Media Pioneers', place:'London', date:'Sep 8–9, 2026', tag:'Retail', fmt:'Conference', logo:L+'retail-media-pioneers.png', photo:P+'2026/WID08325.jpg' },
+      { name:'InvestOps Europe 2026', place:'Hilton Metropole London', date:'Sep 15–17, 2026', tag:'Finance', fmt:'Conference', logo:L+'investops-eu.png', photo:P+'Older%20Events/WBR-ProcureCon-IT-Frankfurt-2019-036-X3.jpg' },
+      { name:'eTail Australia 2026', place:'Pullman Melbourne Albert Park', date:'Sep 22–23, 2026', tag:'Retail', fmt:'Conference', logo:L+'etail-australia.png', photo:P+'2026/_TEL6290.jpg' },
+      { name:'LogiAftersales', place:'Novotel Amsterdam City', date:'Sep 22–23, 2026', tag:'Logistics / Supply Chain', fmt:'Conference', logo:L+'logiaftersales.png', photo:P+'2026/LMP02534.jpg' },
+      { name:'ProcureCon 2026', place:'Koelnmesse, Cologne', date:'Sep 22–24, 2026', tag:'Procurement', fmt:'Conference', logo:L+'procurecon-europe.svg', photo:P+'Older%20Events/WBR.Digital.Food.Beverage.Connect.StAlbans.2022-044_websize-X3.jpg' },
+      { name:'eTail Connect West 2026', place:'Westin Carlsbad Resort, CA', date:'Sep 23–25, 2026', tag:'Retail / eCommerce', fmt:'Connect', logo:L+'etail-connect-west.png', photo:P+'2026/WID08718.jpg' },
+      { name:'Retail CIO Connect 2026', place:'Ashridge House, UK', date:'Sep 30 – Oct 1, 2026', tag:'Info Management', fmt:'Connect', logo:L+'retail-cio-connect.png', photo:P+'2026/_TEL7022.jpg' },
+      { name:'Digital Travel US 2026', place:'JW Marriott Orlando Bonnet Creek', date:'Sep 28–29, 2026', tag:'Travel', fmt:'Conference', logo:L+'digital-travel-summit.png', photo:P+'Older%20Events/i-L7TDpQW-X3.jpg' },
+    ];
+    const regionOf = (pl)=>{ const s=pl.toLowerCase(); if(/singapore|melbourne|sydney|tokyo|asia/.test(s)) return 'Asia / ANZ / MEA'; if(/london|cologne|amsterdam|berlin|paris|metropole|vienna|dusseldorf|hurlingham|ashridge|malm|copenhagen/.test(s)) return 'Europe'; return 'North America'; };
+    feed.forEach(f=>{ f.region = regionOf(f.place); });
+    const S = this.state;
+    const industries = ['All industries', ...Array.from(new Set(feed.map(f=>f.tag)))];
+    const formats = ['All formats','Conference','Connect'];
+    const regions = ['All regions','North America','Europe','Asia / ANZ / MEA'];
+    const q = S.q.trim().toLowerCase();
+    const filtered = feed.filter(f =>
+      (S.region==='All regions' || f.region===S.region) &&
+      (S.industry==='All industries' || f.tag===S.industry) &&
+      (S.format==='All formats' || f.fmt===S.format) &&
+      (q==='' || (f.name+' '+f.place+' '+f.tag).toLowerCase().includes(q))
+    );
+    const regionTabs = regions.map(r=>({ label:r, cls: r===S.region?'rtab on':'rtab', onClick:()=>this.setState({region:r}) }));
+    const set = (k)=>(e)=>this.setState({[k]: e.target.value});
+    const calFiltered = calEvents.filter(ev => S.sector === 'All sectors' || ev.sector === S.sector);
+    const sectorChips = [['All sectors', '100+']].concat(sectorTotals).map(([label, count]) => ({
+      label, count, cls: S.sector === label ? 'schip on' : 'schip',
+      onClick: () => this.setState({ sector: label })
+    }));
+    const regionChips = ['All regions','Americas','Europe','Asia / ANZ / MEA'].map(label => ({
+      label, cls: S.calRegion === label ? 'schip on' : 'schip',
+      onClick: () => this.setState({ calRegion: label })
+    }));
+    const regionLabelOf = { 'North America':'Americas', 'Europe':'Europe', 'Asia / ANZ / MEA':'Asia / ANZ / MEA' };
+    const regionTint = { 'Americas':['#e8eef8','#3b62b0'], 'Europe':['#e3f4f1','#23786c'], 'Asia / ANZ / MEA':['#fdf0e1','#9a5514'] };
+    const calNext = calEvents.map(ev => { const rl = regionLabelOf[regionOf(ev.place)]; return Object.assign({}, ev, { regionLabel: rl, regionBg: regionTint[rl][0], regionFg: regionTint[rl][1] }); });
+    return {
+      calNext, sectorChips, regionChips, calFiltered,
+      calEmpty: calFiltered.length === 0,
+      calSummary: 'Showing ' + calFiltered.length + ' of 100+',
+      brandsOpen: S.brandsOpen,
+      brandsBg: S.brandsOpen ? 'var(--wbr-mist)' : '#fff',
+      brandsCaret: S.brandsOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      toggleBrands: () => this.setState(st => ({ brandsOpen: !st.brandsOpen })),
+      events, calEvents, nextUp, brands, feed,
+      filtered, count: filtered.length, noResults: filtered.length===0,
+      q:S.q, industry:S.industry, format:S.format,
+      industries, formats, regionTabs,
+      onSearch: set('q'), setIndustry: set('industry'), setFormat: set('format'),
+      reset: ()=>this.setState({q:'',industry:'All industries',format:'All formats',region:'All regions'}),
+    };
+  }
+}
+</script>
+</body>
+</html>

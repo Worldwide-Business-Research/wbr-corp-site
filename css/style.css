@@ -1,0 +1,88 @@
+/*
+Project Name: WBR Corporate Site
+Description: Bootstrap 5.3 theme for wbresearch.com
+----------------------------------------------------------------*/
+
+/********************************
+ Variables
+********************************/
+:root {
+  --wbr-dark:#253a63;
+  --wbr-blue:#3b62b0;
+  --wbr-orange:#f0942d;
+  --wbr-orange-hover:#d98226;
+  --wbr-orange-pale:#f7c996;
+  --wbr-green:#33aa99;
+  --wbr-cyan:#03aeef;
+  --wbr-grey:#8490a7;
+  --wbr-grey-pale:#c8ced8;
+  --wbr-ink:#1f2d4a;
+  --wbr-mist:#f4f6fa;
+  --wbr-line:#e3e8f0;
+  --wbr-on-dark:#aeb9d4;
+  --wbr-on-dark-muted:#8194b8;
+  --wbr-font-display:'Lato', system-ui, sans-serif;
+  --wbr-font-body:'Open Sans', system-ui, sans-serif;
+
+  --wbr-fs-hero:2.25rem;      /* 36px */
+  --wbr-fs-stat:2.75rem;      /* 44px */
+  --wbr-fs-h2xl:1.875rem;     /* 30px */
+  --wbr-fs-h2:1.5rem;         /* 24px */
+  --wbr-fs-h3:1.3125rem;      /* 21px */
+  --wbr-fs-lead:1.0625rem;    /* 17px */
+  --wbr-fs-body:0.9375rem;    /* 15px */
+  --wbr-fs-small:0.8125rem;   /* 13px */
+  --wbr-fs-eyebrow:0.71875rem;/* 11.5px */
+  --wbr-fs-icon-xs:0.625rem;  /* 10px */
+  --wbr-fs-icon-sm:0.75rem;   /* 12px */
+  --wbr-fs-icon-lg:1.25rem;   /* 20px */
+
+  --bs-body-font-family:var(--wbr-font-body);
+  --bs-body-font-size:var(--wbr-fs-body);
+  --bs-body-line-height:1.6;
+  --bs-body-color:var(--wbr-ink);
+  --bs-body-bg:#fff;
+  --bs-heading-color:var(--wbr-dark);
+  --bs-link-color:var(--wbr-blue);
+  --bs-link-color-rgb:59, 98, 176;
+  --bs-link-hover-color:var(--wbr-orange);
+  --bs-link-hover-color-rgb:240, 148, 45;
+  --bs-link-decoration:none;
+  --bs-primary:var(--wbr-orange);
+  --bs-primary-rgb:240, 148, 45;
+  --bs-info:var(--wbr-cyan);
+  --bs-info-rgb:3, 174, 239;
+  --bs-success:var(--wbr-green);
+  --bs-success-rgb:51, 170, 153;
+  --bs-light:var(--wbr-mist);
+  --bs-light-rgb:244, 246, 250;
+  --bs-dark:var(--wbr-dark);
+  --bs-dark-rgb:37, 58, 99;
+  --bs-secondary-color:var(--wbr-grey);
+  --bs-border-color:var(--wbr-line);
+  --bs-border-radius:8px;
+  --bs-border-radius-sm:7px;
+  --bs-border-radius-lg:12px;
+  --bs-border-radius-xl:14px;
+  --bs-border-radius-pill:30px;
+}
+
+/********************************
+ Responsive Type Sizes
+********************************/
+@media(min-width:576px){
+  :root {
+    --wbr-fs-hero:2.75rem;    /* 44px */
+    --wbr-fs-h2xl:2.25rem;    /* 36px */
+    --wbr-fs-h2:1.75rem;      /* 28px */
+    --wbr-fs-lead:1.1875rem;  /* 19px */
+  }
+}
+@media(min-width:992px){
+  :root {
+    --wbr-fs-hero:4rem;       /* 64px */
+    --wbr-fs-stat:3.75rem;    /* 60px */
+    --wbr-fs-h2xl:3rem;       /* 48px */
+    --wbr-fs-h2:2rem;         /* 32px */
+  }
+}

@@ -7,10 +7,11 @@ Description: Bootstrap 5.3 theme for wbresearch.com
  Variables
 ********************************/
 :root {
+  /* Brand colours */
   --wbr-dark:#253a63;
   --wbr-blue:#3b62b0;
   --wbr-orange:#f0942d;
-  --wbr-orange-hover:#d98226;
+  --wbr-orange-hover:color-mix(in srgb, var(--wbr-orange), black 10%);
   --wbr-orange-pale:#f7c996;
   --wbr-green:#33aa99;
   --wbr-cyan:#03aeef;
@@ -21,22 +22,29 @@ Description: Bootstrap 5.3 theme for wbresearch.com
   --wbr-line:#e3e8f0;
   --wbr-on-dark:#aeb9d4;
   --wbr-on-dark-muted:#8194b8;
+
+  /* Fonts */
   --wbr-font-display:'Lato', system-ui, sans-serif;
   --wbr-font-body:'Open Sans', system-ui, sans-serif;
 
-  --wbr-fs-hero:2.25rem;      /* 36px */
-  --wbr-fs-stat:2.75rem;      /* 44px */
-  --wbr-fs-h2xl:1.875rem;     /* 30px */
-  --wbr-fs-h2:1.5rem;         /* 24px */
-  --wbr-fs-h3:1.3125rem;      /* 21px */
-  --wbr-fs-lead:1.0625rem;    /* 17px */
-  --wbr-fs-body:0.9375rem;    /* 15px */
-  --wbr-fs-small:0.8125rem;   /* 13px */
-  --wbr-fs-eyebrow:0.71875rem;/* 11.5px */
-  --wbr-fs-icon-xs:0.625rem;  /* 10px */
-  --wbr-fs-icon-sm:0.75rem;   /* 12px */
-  --wbr-fs-icon-lg:1.25rem;   /* 20px */
+  /* Fluid font sizes in px: phone (375px) → desktop (992px and up) */
+  --wbr-fs-hero-phone:36;
+  --wbr-fs-hero-desktop:64;
+  --wbr-fs-stat-phone:44;
+  --wbr-fs-stat-desktop:60;
+  --wbr-fs-h2xl-phone:30;
+  --wbr-fs-h2xl-desktop:48;
+  --wbr-fs-h2-phone:24;
+  --wbr-fs-h2-desktop:32;
 
+  /* Fixed font sizes */
+  --wbr-fs-h3:1.3125rem;       /* 21px */
+  --wbr-fs-lead:1.1875rem;     /* 19px */
+  --wbr-fs-body:0.9375rem;     /* 15px */
+  --wbr-fs-small:0.8125rem;    /* 13px */
+  --wbr-fs-eyebrow:0.71875rem; /* 11.5px */
+
+  /* Bootstrap overrides: points Bootstrap at the WBR colours above */
   --bs-body-font-family:var(--wbr-font-body);
   --bs-body-font-size:var(--wbr-fs-body);
   --bs-body-line-height:1.6;
@@ -65,24 +73,5 @@ Description: Bootstrap 5.3 theme for wbresearch.com
   --bs-border-radius-lg:12px;
   --bs-border-radius-xl:14px;
   --bs-border-radius-pill:30px;
-}
-
-/********************************
- Responsive Type Sizes
-********************************/
-@media(min-width:576px){
-  :root {
-    --wbr-fs-hero:2.75rem;    /* 44px */
-    --wbr-fs-h2xl:2.25rem;    /* 36px */
-    --wbr-fs-h2:1.75rem;      /* 28px */
-    --wbr-fs-lead:1.1875rem;  /* 19px */
-  }
-}
-@media(min-width:992px){
-  :root {
-    --wbr-fs-hero:4rem;       /* 64px */
-    --wbr-fs-stat:3.75rem;    /* 60px */
-    --wbr-fs-h2xl:3rem;       /* 48px */
-    --wbr-fs-h2:2rem;         /* 32px */
-  }
+  --bs-box-shadow-lg:0 24px 48px color-mix(in srgb, var(--wbr-dark) 14%, transparent);
 }

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<style>
+  :root{
+    --wbr-dark:#253a63; --wbr-blue:#3b62b0; --wbr-orange:#f0942d; --wbr-orange-pale:#f7c996;
+    --wbr-grey:#8490a7; --wbr-grey-pale:#c8ced8; --wbr-green:#33aa99; --wbr-cyan:#03aeef;
+    --wbr-ink:#1f2d4a; --wbr-mist:#f4f6fa; --wbr-line:#e3e8f0;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Open Sans',system-ui,sans-serif;color:var(--wbr-ink);background:#e7ecf3;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Lato',system-ui,sans-serif;margin:0;color:var(--wbr-dark);font-weight:900;letter-spacing:-0.015em;line-height:1.08;}
+  p{margin:0;line-height:1.6;max-width:68ch;}
+  a{color:var(--wbr-blue);text-decoration:none;cursor:pointer;}
+  a:hover{color:var(--wbr-orange);}
+  .ey{font-family:'Lato',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:11.5px;}
+  .frame{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(30,45,74,.18);border:1px solid rgba(0,0,0,.06);}
+  .navlink{font-weight:600;font-size:15px;color:var(--wbr-dark);transition:color .15s;}
+  .navlink:hover{color:var(--wbr-orange);}
+  .arrowlink{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-family:'Lato',sans-serif;transition:gap .18s ease;}
+  .arrowlink:hover{gap:14px;}
+  .calrow{transition:background .15s ease;}
+  .calrow:hover{background:var(--wbr-mist);}
+  .schip{display:inline-flex;align-items:center;gap:8px;font-family:'Open Sans';font-weight:600;font-size:13px;color:var(--wbr-dark);background:#fff;border:1px solid var(--wbr-line);padding:8px 14px;border-radius:30px;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease;}
+  .schip:hover{border-color:var(--wbr-grey-pale);}
+  .schip.on{background:var(--wbr-dark);border-color:var(--wbr-dark);color:#fff;font-family:'Lato';font-weight:700;}
+  .fsel{appearance:none;-webkit-appearance:none;width:100%;font-family:'Open Sans';font-weight:600;font-size:15px;color:var(--wbr-dark);background:#fff;border:1px solid var(--wbr-line);border-radius:8px;padding:13px 38px 13px 14px;cursor:pointer;outline:0;}
+  .fsel:focus,.finput:focus{border-color:var(--wbr-blue);}
+  .finput{width:100%;font-family:'Open Sans';font-size:15px;color:var(--wbr-dark);background:#fff;border:1px solid var(--wbr-line);border-radius:8px;padding:13px 14px 13px 42px;outline:0;}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--wbr-dark);background:#fff;border:1px solid var(--wbr-grey-pale);border-radius:30px;padding:6px 8px 6px 14px;}
+  .pill button{border:0;background:var(--wbr-mist);color:var(--wbr-dark);width:20px;height:20px;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:10px;}
+  .pill button:hover{background:var(--wbr-orange);color:#fff;}
+  .sortbtn{border:0;background:transparent;font-family:'Open Sans';font-weight:600;font-size:13px;color:var(--wbr-grey);padding:7px 14px;border-radius:6px;cursor:pointer;}
+  .sortbtn.on{background:#fff;color:var(--wbr-dark);box-shadow:0 1px 3px rgba(37,58,99,.14);font-weight:700;}
+  .mcell{display:flex;flex-direction:column;gap:4px;padding:12px 10px 11px;border:1px solid var(--wbr-line);border-radius:10px;background:#fff;cursor:pointer;text-align:left;font-family:'Open Sans';transition:border-color .15s ease,background .15s ease;}
+  .mcell:hover{border-color:var(--wbr-grey-pale);}
+  .mcell.on{background:var(--wbr-dark);border-color:var(--wbr-dark);}
+  .mcell.on .mc-m,.mcell.on .mc-n{color:#fff;}
+  .mcell.zero{opacity:.45;}
+  .mc-m{font-family:'Lato';font-weight:900;font-size:15px;color:var(--wbr-dark);}
+  .mc-n{font-size:11.5px;color:var(--wbr-grey);font-variant-numeric:tabular-nums;}
+  .clearall{border:0;background:transparent;font-family:'Lato';font-weight:700;font-size:13px;color:var(--wbr-blue);cursor:pointer;padding:6px 4px;}
+  .clearall:hover{color:var(--wbr-orange);}
+</style>
+</helmet>
+
+<div style="padding:48px;display:flex;justify-content:center;">
+<!-- ============================ 4A — SEARCH BAR + DROPDOWNS ============================ -->
+    <div id="4a" style="width:1280px;flex:0 0 auto;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span style="background:var(--wbr-dark);color:#fff;font-family:'Lato';font-weight:900;font-size:15px;padding:6px 14px;border-radius:8px;">4a</span>
+        <div><div style="font-family:'Lato';font-weight:900;font-size:19px;color:var(--wbr-dark);">Search Bar and Dropdowns</div><div style="font-size:13px;color:var(--wbr-grey);">One filter bar, date range as from/to months, results grouped by month</div></div>
+      </div>
+      <div class="frame">
+        <div style="height:38px;background:#eef1f6;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--wbr-line);">
+          <span style="width:11px;height:11px;border-radius:50%;background:#e0655a;"></span><span style="width:11px;height:11px;border-radius:50%;background:#ecb14a;"></span><span style="width:11px;height:11px;border-radius:50%;background:#63c264;"></span>
+          <span style="margin-left:14px;background:#fff;border:1px solid var(--wbr-line);border-radius:6px;font-size:11.5px;color:var(--wbr-grey);padding:3px 12px;">wbresearch.com/conferences</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 44px;background:#fff;border-bottom:1px solid var(--wbr-line);">
+          <div style="display:flex;align-items:center;gap:20px;">
+            <img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Logos/Corporate%20Site%20Logo/wbr-acro.jpg" alt="WBR" style="height:34px;display:block;">
+            <span style="width:1px;height:26px;background:var(--wbr-line);"></span>
+            <span style="display:inline-flex;align-items:center;gap:9px;border:1px solid var(--wbr-line);color:var(--wbr-dark);font-family:'Lato';font-weight:700;font-size:13px;padding:8px 14px;border-radius:8px;"><span style="display:flex;gap:3px;"><span style="width:5px;height:5px;border-radius:1px;background:var(--wbr-blue);"></span><span style="width:5px;height:5px;border-radius:1px;background:var(--wbr-orange);"></span><span style="width:5px;height:5px;border-radius:1px;background:var(--wbr-green);"></span></span>Our brands<i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--wbr-grey);"></i></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:30px;">
+            <a class="navlink" style="color:var(--wbr-orange);">Conferences</a><a class="navlink">Connect Events</a><a class="navlink">WBR Insights</a><a class="navlink">About Us</a>
+            <a style="display:inline-flex;align-items:center;gap:8px;background:var(--wbr-orange);color:#fff;font-weight:700;font-family:'Lato';font-size:15px;padding:11px 20px;border-radius:8px;">Find an event <i class="fa-solid fa-arrow-right" style="font-size:13px;"></i></a>
+          </div>
+        </div>
+
+        <div style="position:relative;background:var(--wbr-mist);padding:56px 72px 48px;border-bottom:1px solid var(--wbr-line);overflow:hidden;">
+          <img src="uploads/Corporate%20Website%20Redesign%20Case%20Study/Event%20Photography/2026/_TEL6242.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32;filter:saturate(.8);pointer-events:none;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(244,246,250,.2) 0%,rgba(244,246,250,.75) 100%);pointer-events:none;"></div>
+          <div style="position:relative;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--wbr-grey);"><a style="color:var(--wbr-grey);">Home</a><i class="fa-solid fa-chevron-right" style="font-size:9px;"></i><span style="color:var(--wbr-dark);font-weight:600;">Conferences</span></div>
+          <div class="ey" style="color:var(--wbr-orange);margin-top:28px;">100+ conferences a year</div>
+          <h1 style="font-size:48px;margin-top:12px;">Find an Event</h1>
+          <div style="margin-top:32px;background:#fff;border:1px solid var(--wbr-line);border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(37,58,99,.06);display:grid;grid-template-columns:minmax(0,1.6fr) repeat(4,minmax(0,1fr));gap:12px;align-items:end;">
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;font-weight:600;color:var(--wbr-grey);">Keyword</span>
+              <span style="position:relative;display:block;"><i class="fa-solid fa-magnifying-glass" style="position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--wbr-grey);"></i><input class="finput" placeholder="Event, city or topic" value="{{ a.q }}" onChange="{{ a.onQ }}"></span>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;font-weight:600;color:var(--wbr-grey);">Region</span>
+              <span style="position:relative;display:block;"><select class="fsel" value="{{ a.region }}" onChange="{{ a.onRegion }}"><sc-for list="{{ regions }}" as="o" hint-placeholder-count="4"><option value="{{ o }}">{{ o }}</option></sc-for></select><i class="fa-solid fa-chevron-down" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--wbr-grey);pointer-events:none;"></i></span>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;font-weight:600;color:var(--wbr-grey);">Event type</span>
+              <span style="position:relative;display:block;"><select class="fsel" value="{{ a.type }}" onChange="{{ a.onType }}"><sc-for list="{{ types }}" as="o" hint-placeholder-count="5"><option value="{{ o }}">{{ o }}</option></sc-for></select><i class="fa-solid fa-chevron-down" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--wbr-grey);pointer-events:none;"></i></span>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;font-weight:600;color:var(--wbr-grey);">From</span>
+              <span style="position:relative;display:block;"><select class="fsel" value="{{ a.from }}" onChange="{{ a.onFrom }}"><sc-for list="{{ monthOpts }}" as="o" hint-placeholder-count="12"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></select><i class="fa-solid fa-chevron-down" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--wbr-grey);pointer-events:none;"></i></span>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;font-weight:600;color:var(--wbr-grey);">To</span>
+              <span style="position:relative;display:block;"><select class="fsel" value="{{ a.to }}" onChange="{{ a.onTo }}"><sc-for list="{{ monthOpts }}" as="o" hint-placeholder-count="12"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></select><i class="fa-solid fa-chevron-down" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--wbr-grey);pointer-events:none;"></i></span>
+            </label>
+          </div>
+          </div>
+        </div>
+
+        <div style="padding:40px 72px 84px;background:#fff;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:34px;">
+              <span style="font-family:'Lato';font-weight:900;font-size:21px;color:var(--wbr-dark);margin-right:10px;">{{ a.countLabel }}</span>
+              <sc-for list="{{ a.pills }}" as="p" hint-placeholder-count="0">
+                <span class="pill">{{ p.label }}<button onClick="{{ p.onClear }}" aria-label="Remove filter"><i class="fa-solid fa-xmark"></i></button></span>
+              </sc-for>
+              <sc-if value="{{ a.hasPills }}" hint-placeholder-val="{{ false }}"><button class="clearall" onClick="{{ a.clear }}">Clear all</button></sc-if>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:13px;color:var(--wbr-grey);font-weight:600;">Sort by</span>
+              <div style="display:flex;background:var(--wbr-mist);border-radius:8px;padding:3px;">
+                <sc-for list="{{ a.sorts }}" as="s" hint-placeholder-count="2"><button class="{{ s.cls }}" onClick="{{ s.onClick }}">{{ s.label }}</button></sc-for>
+              </div>
+            </div>
+          </div>
+
+          <sc-for list="{{ a.groups }}" as="g" hint-placeholder-count="2">
+            <div style="margin-top:36px;">
+              <div style="display:flex;align-items:baseline;gap:12px;padding-bottom:12px;">
+                <h3 style="font-size:21px;font-weight:900;">{{ g.label }}</h3>
+                <span style="font-size:13px;color:var(--wbr-grey);">{{ g.count }}</span>
+              </div>
+              <div style="border-top:1px solid var(--wbr-line);">
+                <sc-for list="{{ g.items }}" as="ev" hint-placeholder-count="3">
+                  <div class="calrow" style="display:grid;grid-template-columns:132px 1fr auto;align-items:center;border-bottom:1px solid var(--wbr-line);cursor:pointer;">
+                    <div style="border-right:1px solid var(--wbr-line);padding:24px 26px 24px 4px;align-self:stretch;display:flex;flex-direction:column;justify-content:center;">
+                      <div class="ey" style="color:var(--wbr-grey);">{{ ev.mon }}</div>
+                      <div style="font-family:'Lato';font-weight:900;font-size:32px;color:var(--wbr-dark);line-height:1.05;margin-top:4px;font-variant-numeric:tabular-nums;">{{ ev.days }}</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:26px;padding:20px 26px;">
+                      <div style="width:150px;flex:0 0 auto;display:flex;align-items:center;"><img src="{{ ev.logo }}" alt="" style="max-height:30px;max-width:150px;object-fit:contain;"></div>
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;"><span style="color:var(--wbr-dark);font-weight:700;font-family:'Lato';font-size:19px;">{{ ev.name }}</span><span style="font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wbr-grey);border:1px solid var(--wbr-line);border-radius:20px;padding:3px 9px;">{{ ev.type }}</span></div>
+                        <div style="color:var(--wbr-grey);font-size:15px;margin-top:5px;display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;border-radius:2px;flex:0 0 auto;background:{{ ev.color }};"></span>{{ ev.sector }}<i class="fa-solid fa-location-dot" style="font-size:11px;color:var(--wbr-grey-pale);margin-left:4px;"></i>{{ ev.place }}</div>
+                      </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:20px 4px 20px 26px;">
+                      <a style="font-weight:700;font-size:13px;color:var(--wbr-dark);border:1px solid var(--wbr-line);padding:8px 15px;border-radius:7px;">Sponsor</a>
+                      <a style="font-weight:700;font-size:13px;color:#fff;background:var(--wbr-blue);padding:8px 15px;border-radius:7px;">Agenda</a>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+
+          <sc-if value="{{ a.empty }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:36px;border:1px dashed var(--wbr-grey-pale);border-radius:14px;padding:56px 40px;text-align:center;">
+              <i class="fa-solid fa-calendar-xmark" style="font-size:28px;color:var(--wbr-grey-pale);"></i>
+              <h3 style="font-size:21px;margin-top:16px;">No Events Match These Filters</h3>
+              <p style="color:var(--wbr-grey);font-size:15px;margin:8px auto 0;">Try a wider date range or another region.</p>
+              <button class="clearall" onClick="{{ a.clear }}" style="margin-top:14px;font-size:15px;">Clear all filters</button>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="background:var(--wbr-dark);color:#fff;padding:40px 72px;display:flex;align-items:center;justify-content:space-between;gap:32px;">
+          <span style="font-family:'Lato';font-weight:900;font-size:21px;letter-spacing:.02em;">WBR</span>
+          <div style="display:flex;gap:28px;color:#aeb9d4;font-size:15px;"><span>Conferences</span><span>Connect Events</span><span>WBR Insights</span><span>About Us</span></div>
+          <div style="color:#aeb9d4;font-size:13px;">© 2026 WBR</div>
+        </div>
+      </div>
+    </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    aq:'', aRegion:'All regions', aType:'All types', aFrom:'0', aTo:'11', aSort:'date',
+    bq:'', bRegion:'All regions', bType:'All types', bMonth:-1, bSort:'date'
+  };
+  renderVals() {
+    const S = this.state;
+    const L = 'uploads/Corporate%20Website%20Redesign%20Case%20Study/Logos/WBR%20Event%20Logos/';
+    const MON = ['Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
+    const FULL = ['October','November','December','January','February','March','April','May','June','July','August','September'];
+    const yr = i => (i < 3 ? '2026' : '2027');
+    const col = { 'Retail & eCommerce':'var(--wbr-orange)', 'Procurement & Sourcing':'var(--wbr-green)', 'Finance & Investments':'var(--wbr-blue)', 'Supply Chain & Logistics':'var(--wbr-cyan)', 'Customer Experience':'var(--wbr-orange-pale)', 'Technology & Data':'var(--wbr-grey)', 'HR & Field Service':'var(--wbr-green)' };
+    const raw = [
+      ['eTail Autumn Interactive', 0, 14, '14', 'Online', 'Americas', 'Webinar', 'Retail & eCommerce', 'etail-autumn-interactive.png'],
+      ['ProcureCon Europe 2026', 0, 20, '20–22', 'Amsterdam, NL', 'Europe', 'Conference', 'Procurement & Sourcing', 'procurecon-europe.svg'],
+      ['Digital Travel Summit EMEA', 0, 27, '27–28', 'London, UK', 'Europe', 'Summit', 'Customer Experience', 'digital-travel-summit.png'],
+      ['InvestOps Europe 2026', 1, 3, '3–4', 'London, UK', 'Europe', 'Conference', 'Finance & Investments', 'investops-eu.png'],
+      ['LogiAfterSales 2026', 1, 10, '10–12', 'Amsterdam, NL', 'Europe', 'Conference', 'Supply Chain & Logistics', 'logiaftersales.png'],
+      ['eTail Australia 2026', 1, 17, '17–18', 'Melbourne, AU', 'Asia / ANZ / MEA', 'Conference', 'Retail & eCommerce', 'etail-australia.png'],
+      ['Retail CIO Connect', 2, 1, '1–2', 'Ashridge House, UK', 'Europe', 'Connect', 'Technology & Data', 'retail-cio-connect.png'],
+      ['TradeTech FX US 2026', 2, 8, '8–9', 'Miami, FL', 'Americas', 'Summit', 'Finance & Investments', 'tradetech-fx.svg'],
+      ['HR Retail: Frontline Hiring in 2027', 3, 21, '21', 'Online', 'Americas', 'Webinar', 'HR & Field Service', 'hr-retail.png'],
+      ['eTail Connect West 2027', 4, 8, '8–10', 'Phoenix, AZ', 'Americas', 'Connect', 'Retail & eCommerce', 'etail-connect-west.png'],
+      ['ProcureCon Indirect East 2027', 4, 23, '23–25', 'Philadelphia, PA', 'Americas', 'Conference', 'Procurement & Sourcing', 'procurecon-indirect-east.svg'],
+      ['Digital Insurance Connect 2027', 5, 2, '2–4', 'Austin, TX', 'Americas', 'Connect', 'Finance & Investments', 'digital-insurance-connect.png'],
+      ['Field Service East 2027', 5, 16, '16–18', 'Orlando, FL', 'Americas', 'Conference', 'HR & Field Service', 'field-service-east.png'],
+      ['InvestOps Asia 2027', 5, 23, '23–24', 'Singapore', 'Asia / ANZ / MEA', 'Conference', 'Finance & Investments', 'investops-asia.png'],
+      ['Retail Media Pioneers 2027', 6, 13, '13–14', 'London, UK', 'Europe', 'Summit', 'Retail & eCommerce', 'retail-media-pioneers.png'],
+      ['Digital Travel Summit APAC', 7, 18, '18–19', 'Singapore', 'Asia / ANZ / MEA', 'Summit', 'Customer Experience', 'digital-travel-summit.png'],
+      ['eTail Boston 2027', 10, 9, '9–11', 'Boston, MA', 'Americas', 'Conference', 'Retail & eCommerce', 'etail-boston.png'],
+    ];
+    const events = raw.map(r => ({ name:r[0], mi:r[1], key:r[1]*100+r[2], days:r[3], place:r[4], region:r[5], type:r[6], sector:r[7], logo:L+r[8], color:col[r[7]], mon:MON[r[1]].toUpperCase(), monYr:MON[r[1]].toUpperCase()+' '+yr(r[1]) }));
+    const regions = ['All regions','Americas','Europe','Asia / ANZ / MEA'];
+    const types = ['All types','Conference','Summit','Connect','Webinar'];
+    const monthOpts = MON.map((m,i) => ({ v:String(i), label:m+' '+yr(i) }));
+    const match = (ev, q, region, type) =>
+      (region === 'All regions' || ev.region === region) &&
+      (type === 'All types' || ev.type === type) &&
+      (q === '' || (ev.name+' '+ev.place+' '+ev.sector+' '+ev.type).toLowerCase().includes(q.toLowerCase()));
+    const sortFn = s => (x,y) => s === 'name' ? x.name.localeCompare(y.name) : x.key - y.key;
+    const set = k => e => this.setState({ [k]: e.target.value });
+    const sorts = p => [['date','Date'],['name','Name']].map(([v,label]) => ({ label, cls: S[p+'Sort']===v ? 'sortbtn on' : 'sortbtn', onClick: () => this.setState({ [p+'Sort']: v }) }));
+    const countLabel = n => n === 1 ? '1 event' : n + ' events';
+
+    // 4a
+    const f = Math.min(+S.aFrom, +S.aTo), t = Math.max(+S.aFrom, +S.aTo);
+    const aList = events.filter(ev => match(ev, S.aq, S.aRegion, S.aType) && ev.mi >= f && ev.mi <= t).sort(sortFn(S.aSort));
+    const aPills = [];
+    if (S.aq) aPills.push({ label:'"'+S.aq+'"', onClear:()=>this.setState({ aq:'' }) });
+    if (S.aRegion !== 'All regions') aPills.push({ label:S.aRegion, onClear:()=>this.setState({ aRegion:'All regions' }) });
+    if (S.aType !== 'All types') aPills.push({ label:S.aType, onClear:()=>this.setState({ aType:'All types' }) });
+    if (f !== 0 || t !== 11) aPills.push({ label:MON[f]+' '+yr(f)+' – '+MON[t]+' '+yr(t), onClear:()=>this.setState({ aFrom:'0', aTo:'11' }) });
+    let aGroups;
+    if (S.aSort === 'date') {
+      aGroups = [];
+      aList.forEach(ev => {
+        let g = aGroups[aGroups.length-1];
+        if (!g || g.mi !== ev.mi) { g = { mi:ev.mi, label:FULL[ev.mi]+' '+yr(ev.mi), items:[] }; aGroups.push(g); }
+        g.items.push(ev);
+      });
+      aGroups.forEach(g => g.count = countLabel(g.items.length));
+    } else {
+      aGroups = aList.length ? [{ label:'A–Z', count:countLabel(aList.length), items:aList }] : [];
+    }
+    const a = {
+      q:S.aq, region:S.aRegion, type:S.aType, from:S.aFrom, to:S.aTo,
+      onQ:set('aq'), onRegion:set('aRegion'), onType:set('aType'), onFrom:set('aFrom'), onTo:set('aTo'),
+      pills:aPills, hasPills:aPills.length > 0, groups:aGroups, empty:aList.length === 0,
+      countLabel:countLabel(aList.length), sorts:sorts('a'),
+      clear:()=>this.setState({ aq:'', aRegion:'All regions', aType:'All types', aFrom:'0', aTo:'11' }),
+    };
+
+    // 4b
+    const bBase = events.filter(ev => match(ev, S.bq, S.bRegion, S.bType));
+    const bList = bBase.filter(ev => S.bMonth < 0 || ev.mi === S.bMonth).sort(sortFn(S.bSort));
+    const bPills = [];
+    if (S.bq) bPills.push({ label:'"'+S.bq+'"', onClear:()=>this.setState({ bq:'' }) });
+    if (S.bRegion !== 'All regions') bPills.push({ label:S.bRegion, onClear:()=>this.setState({ bRegion:'All regions' }) });
+    if (S.bType !== 'All types') bPills.push({ label:S.bType, onClear:()=>this.setState({ bType:'All types' }) });
+    if (S.bMonth >= 0) bPills.push({ label:FULL[S.bMonth]+' '+yr(S.bMonth), onClear:()=>this.setState({ bMonth:-1 }) });
+    const b = {
+      q:S.bq, onQ:set('bq'),
+      regionChips: regions.map(label => ({ label, cls: S.bRegion===label ? 'schip on' : 'schip', onClick:()=>this.setState({ bRegion:label }) })),
+      typeChips: types.map(label => ({ label, cls: S.bType===label ? 'schip on' : 'schip', onClick:()=>this.setState({ bType:label }) })),
+      monthCells: MON.map((m,i) => {
+        const n = bBase.filter(ev => ev.mi === i).length;
+        return { label:m, n: n === 1 ? '1 event' : n + ' events', cls: 'mcell' + (S.bMonth===i ? ' on' : '') + (n===0 && S.bMonth!==i ? ' zero' : ''), onClick:()=>this.setState({ bMonth: S.bMonth===i ? -1 : i }) };
+      }),
+      pills:bPills, hasPills:bPills.length > 0, list:bList, empty:bList.length === 0,
+      countLabel:countLabel(bList.length), sorts:sorts('b'),
+      clear:()=>this.setState({ bq:'', bRegion:'All regions', bType:'All types', bMonth:-1 }),
+    };
+    return { regions, types, monthOpts, a, b };
+  }
+}
+</script>
+</body>
+</html>

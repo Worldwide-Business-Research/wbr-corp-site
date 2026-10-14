@@ -1,0 +1,51 @@
+// WBR corporate site — Bootstrap 5.3 Sass overrides.
+// Only needed if you compile Bootstrap from source. Import BEFORE bootstrap:
+//   @import "wbr-variables";
+//   @import "bootstrap/scss/bootstrap";
+// Then load wbr-theme.css for the component classes (its :root --bs-* block becomes redundant).
+
+$wbr-dark: #253a63;
+$wbr-blue: #3b62b0;
+$wbr-orange: #f0942d;
+$wbr-orange-pale: #f7c996;
+$wbr-green: #33aa99;
+$wbr-cyan: #03aeef;
+$wbr-grey: #8490a7;
+$wbr-grey-pale: #c8ced8;
+$wbr-ink: #1f2d4a;
+$wbr-mist: #f4f6fa;
+$wbr-line: #e3e8f0;
+
+$primary: $wbr-orange;
+$secondary: $wbr-dark;
+$info: $wbr-cyan;
+$success: $wbr-green;
+$light: $wbr-mist;
+$dark: $wbr-dark;
+
+$body-color: $wbr-ink;
+$body-bg: #fff;
+$headings-color: $wbr-dark;
+$link-color: $wbr-blue;
+$link-hover-color: $wbr-orange;
+$link-decoration: none;
+$border-color: $wbr-line;
+$secondary-color: $wbr-grey;
+
+$font-family-sans-serif: 'Open Sans', system-ui, sans-serif;
+$headings-font-family: 'Lato', system-ui, sans-serif;
+$font-size-base: 0.9375rem; // 15px
+$line-height-base: 1.6;
+$headings-font-weight: 900;
+$headings-line-height: 1.08;
+
+$border-radius: 8px;
+$border-radius-sm: 7px;
+$border-radius-lg: 12px;
+$border-radius-xl: 14px;
+$border-radius-pill: 30px;
+
+$btn-font-family: 'Lato', sans-serif;
+$btn-font-weight: 700;
+
+$container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px, xxl: 1280px);

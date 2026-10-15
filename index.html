@@ -14,16 +14,18 @@
 </head>
 <body class="front-page">
 
+<a class="visually-hidden-focusable btn btn-wbr-primary position-absolute top-0 start-0 m-2 z-3" href="#wbr-content">Skip to main content</a>
+
 <header id="wbr-header" class="position-relative bg-white border-bottom">
   <nav id="wbr-nav" class="navbar navbar-expand-lg wbr-nav" aria-label="Main">
     <div class="container-fluid px-3 px-md-4 px-xl-5">
-      <div class="d-flex align-items-center gap-3">
+      <div class="hstack gap-3">
         <a class="navbar-brand p-0 m-0" href="/">
           <img src="img/wbr-logo.jpg" alt="WBR" class="wbr-nav-logo d-block">
         </a>
         <span class="vr d-none d-sm-block"></span>
         <button class="wbr-brands-toggle d-none d-sm-inline-flex align-items-center gap-2 py-2 px-3 rounded-2 fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#wbr-brands-panel" aria-expanded="false" aria-controls="wbr-brands-panel">
-          <span class="wbr-brands-toggle-dots d-flex align-items-center gap-1" aria-hidden="true"><span class="bg-wbr-blue"></span><span class="bg-wbr-orange"></span><span class="bg-wbr-green"></span></span>
+          <span class="wbr-brands-toggle-dots hstack gap-1" aria-hidden="true"><span class="bg-wbr-blue"></span><span class="bg-wbr-orange"></span><span class="bg-wbr-green"></span></span>
           Our brands
           <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
         </button>
@@ -56,10 +58,10 @@
               </h2>
               <div id="wbr-nav-brands" class="accordion-collapse collapse" data-bs-parent="#wbr-nav-brands-accordion">
                 <div class="accordion-body">
-                  <a class="wbr-nav-brand-link d-flex align-items-center gap-3 py-2 text-body-secondary wbr-type-small" href="#"><img src="img/brands/etail.svg" alt="eTail" class="object-fit-contain">Retail and eCommerce</a>
-                  <a class="wbr-nav-brand-link d-flex align-items-center gap-3 py-2 text-body-secondary wbr-type-small" href="#"><img src="img/brands/logipharma.svg" alt="LogiPharma" class="object-fit-contain">Pharma supply chain</a>
-                  <a class="wbr-nav-brand-link d-flex align-items-center gap-3 py-2 text-body-secondary wbr-type-small" href="#"><img src="img/brands/procurecon.svg" alt="ProcureCon" class="object-fit-contain">Procurement and sourcing</a>
-                  <a class="wbr-arrow-link py-2" href="#">See all brands <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                  <a class="wbr-nav-brand-link hstack gap-3 py-2 text-body-secondary wbr-type-small" href="#"><img src="img/brands/etail.svg" alt="eTail" class="object-fit-contain">Retail and eCommerce</a>
+                  <a class="wbr-nav-brand-link hstack gap-3 py-2 text-body-secondary wbr-type-small" href="#"><img src="img/brands/logipharma.svg" alt="LogiPharma" class="object-fit-contain">Pharma supply chain</a>
+                  <a class="wbr-nav-brand-link hstack gap-3 py-2 text-body-secondary wbr-type-small" href="#"><img src="img/brands/procurecon.svg" alt="ProcureCon" class="object-fit-contain">Procurement and sourcing</a>
+                  <a class="icon-link icon-link-hover wbr-arrow-link py-2" href="#">See all brands <i class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
                 </div>
               </div>
             </div>
@@ -71,19 +73,19 @@
     </div>
   </nav>
 
-  <div id="wbr-brands-panel" class="wbr-brands-panel collapse position-absolute top-100 start-0 end-0 bg-light border-bottom shadow-lg">
+  <div id="wbr-brands-panel" class="wbr-brands-panel collapse position-absolute top-100 start-0 end-0 z-3 bg-light border-bottom shadow-lg">
     <div class="container-fluid px-3 px-md-4 px-xl-5">
       <div class="d-flex align-items-end justify-content-between mb-4">
         <div>
           <div class="wbr-eyebrow">The WBR family</div>
           <div class="wbr-heading-font wbr-type-h3 fw-black mt-2">40+ event brands, one research house.</div>
         </div>
-        <a class="wbr-arrow-link" href="#">See all brands <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <a class="icon-link icon-link-hover wbr-arrow-link" href="#">See all brands <i class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
       </div>
       <div class="row row-cols-2 row-cols-lg-4 g-3">
         <div class="col">
           <a class="wbr-brand-card d-flex flex-column gap-3 h-100 p-4 bg-white border rounded-3" href="#">
-            <div class="wbr-brand-card-logo d-flex align-items-center"><img src="img/brands/etail.svg" alt="eTail" class="object-fit-contain"></div>
+            <div class="wbr-brand-card-logo hstack"><img src="img/brands/etail.svg" alt="eTail" class="object-fit-contain"></div>
             <div class="wbr-brand-card-color-bar bg-wbr-orange"></div>
             <div class="wbr-type-small text-body-secondary">Retail and eCommerce leaders, since 1999.</div>
             <div class="wbr-eyebrow text-dark">8 events</div>
@@ -91,7 +93,7 @@
         </div>
         <div class="col">
           <a class="wbr-brand-card d-flex flex-column gap-3 h-100 p-4 bg-white border rounded-3" href="#">
-            <div class="wbr-brand-card-logo d-flex align-items-center"><img src="img/brands/logipharma.svg" alt="LogiPharma" class="object-fit-contain"></div>
+            <div class="wbr-brand-card-logo hstack"><img src="img/brands/logipharma.svg" alt="LogiPharma" class="object-fit-contain"></div>
             <div class="wbr-brand-card-color-bar bg-wbr-blue"></div>
             <div class="wbr-type-small text-body-secondary">Pharma supply chain, end to end.</div>
             <div class="wbr-eyebrow text-dark">5 events</div>
@@ -99,7 +101,7 @@
         </div>
         <div class="col">
           <a class="wbr-brand-card d-flex flex-column gap-3 h-100 p-4 bg-white border rounded-3" href="#">
-            <div class="wbr-brand-card-logo d-flex align-items-center"><img src="img/brands/procurecon.svg" alt="ProcureCon" class="object-fit-contain"></div>
+            <div class="wbr-brand-card-logo hstack"><img src="img/brands/procurecon.svg" alt="ProcureCon" class="object-fit-contain"></div>
             <div class="wbr-brand-card-color-bar bg-wbr-green"></div>
             <div class="wbr-type-small text-body-secondary">Procurement and strategic sourcing.</div>
             <div class="wbr-eyebrow text-dark">11 events</div>
@@ -128,7 +130,7 @@
         <h1 class="wbr-type-hero text-white mt-3 mb-0">Connecting Leaders.<br>Inspiring Innovation.</h1>
         <p class="wbr-type-lead wbr-hero-text text-white text-opacity-75 mt-4 mb-0">For 25 years we've brought the people who move industries into the same room — to meet, learn and build what's next, together.</p>
 
-        <form class="wbr-hero-search d-flex align-items-center gap-2 p-2 bg-white rounded-3 shadow-lg" action="/conferences" method="get" role="search">
+        <form class="wbr-hero-search hstack gap-2 p-2 bg-white rounded-3 shadow-lg" action="/conferences" method="get" role="search">
           <label for="wbr-hero-search-input" class="visually-hidden">Search events, industries, cities</label>
           <i class="fa-solid fa-magnifying-glass ps-2 ps-sm-3 text-body-secondary" aria-hidden="true"></i>
           <input id="wbr-hero-search-input" class="wbr-hero-search-input flex-grow-1 border-0 bg-transparent text-body" type="search" name="q" placeholder="Search events, industries, cities…" autocomplete="off">
@@ -149,12 +151,12 @@
   <section id="wbr-next-up" class="bg-dark text-white">
     <div class="container-fluid px-3 px-md-4 px-xl-5 d-flex flex-column flex-md-row align-items-md-center gap-1 gap-md-3 py-3">
       <div class="d-flex flex-wrap align-items-center column-gap-3">
-        <span class="wbr-eyebrow wbr-next-up-label d-flex align-items-center gap-2"><span class="wbr-pulse-dot rounded-circle bg-wbr-orange"></span>Next up</span>
+        <span class="wbr-eyebrow wbr-next-up-label hstack gap-2"><span class="wbr-pulse-dot rounded-circle bg-wbr-orange"></span>Next up</span>
         <span class="wbr-heading-font fw-bold text-white">Retail IT Connect US 2026</span>
       </div>
-      <div class="d-flex align-items-center gap-3 flex-grow-1">
+      <div class="hstack gap-3 flex-grow-1">
         <span class="text-white text-opacity-75">Loews Nashville · Aug 1–2, 2026</span>
-        <a class="wbr-arrow-link ms-auto flex-shrink-0" href="#">View agenda <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <a class="icon-link icon-link-hover wbr-arrow-link ms-auto flex-shrink-0" href="#">View agenda <i class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
       </div>
     </div>
   </section>
@@ -167,17 +169,17 @@
         <div class="wbr-business-line col-12 col-md-4 py-4 py-md-0 px-md-3 px-lg-4">
           <div class="d-flex align-items-baseline gap-2"><span class="wbr-color-square bg-wbr-blue"></span><h2 class="wbr-type-h3 mb-0">Conferences</h2></div>
           <p class="text-body-secondary mt-3 mb-0">Senior-level forums where entire industries gather to set the agenda for the year ahead.</p>
-          <a class="wbr-arrow-link mt-3" href="/conferences">Browse conferences <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a class="icon-link icon-link-hover wbr-arrow-link mt-3" href="/conferences">Browse conferences <i class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
         </div>
         <div class="wbr-business-line col-12 col-md-4 py-4 py-md-0 px-md-3 px-lg-4">
           <div class="d-flex align-items-baseline gap-2"><span class="wbr-color-square bg-wbr-green"></span><h2 class="wbr-type-h3 mb-0">Connect Events</h2></div>
           <p class="text-body-secondary mt-3 mb-0">Intimate, 1-to-1 formats that match decision-makers with the solutions they are looking for.</p>
-          <a class="wbr-arrow-link link-wbr-green mt-3" href="#">See Connect <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a class="icon-link icon-link-hover wbr-arrow-link link-wbr-green mt-3" href="#">See Connect <i class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
         </div>
         <div class="wbr-business-line col-12 col-md-4 py-4 py-md-0 px-md-3 px-lg-4">
           <div class="d-flex align-items-baseline gap-2"><span class="wbr-color-square bg-wbr-cyan"></span><h2 class="wbr-type-h3 mb-0">WBR Insights</h2></div>
           <p class="text-body-secondary mt-3 mb-0">Original research, reports and webinars — the year-round intelligence behind every event.</p>
-          <a class="wbr-arrow-link link-wbr-cyan mt-3" href="#">Read Insights <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a class="icon-link icon-link-hover wbr-arrow-link link-wbr-cyan mt-3" href="#">Read Insights <i class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>

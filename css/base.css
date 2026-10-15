@@ -63,20 +63,17 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .btn-wbr-primary i {font-size:var(--wbr-fs-small);}
 
 /* Arrow Link */
-.wbr-arrow-link {display:inline-flex; align-items:center; gap:8px; font-family:var(--wbr-font-display); font-weight:700; font-size:var(--wbr-fs-body); transition:gap .18s ease;}
-.wbr-arrow-link:hover {gap:14px;}
-.wbr-arrow-link i {font-size:0.75rem;}
+.wbr-arrow-link {font-family:var(--wbr-font-display); font-weight:700;}
+.wbr-arrow-link .bi {font-size:0.75rem;}
 
 /********************************
  Primary Navigation
 ********************************/
-.wbr-nav {padding-block:12px; --bs-navbar-nav-link-padding-x:0;}
+.wbr-nav {padding-block:12px; --bs-navbar-nav-link-padding-x:0; --bs-navbar-color:var(--wbr-dark); --bs-navbar-hover-color:var(--wbr-orange); --bs-navbar-active-color:var(--wbr-orange);}
 .wbr-nav-logo {height:30px;}
 .wbr-nav .navbar-toggler {width:44px; height:44px; font-size:1.25rem;}
-.wbr-nav .navbar-toggler:focus {box-shadow:0 0 0 3px color-mix(in srgb, var(--wbr-blue) 20%, transparent);}
 .wbr-nav .nav-item {border-bottom:1px solid var(--wbr-line);}
-.wbr-nav .nav-link {font-size:var(--wbr-fs-body); color:var(--wbr-dark); padding:12px 0; transition:color .15s ease;}
-.wbr-nav .nav-link:hover, .wbr-nav .nav-link:focus, .wbr-nav .nav-link.active {color:var(--wbr-orange);}
+.wbr-nav .nav-link {font-size:var(--wbr-fs-body); padding:12px 0;}
 
 /* Mobile Offcanvas Brands Accordion */
 .wbr-nav .accordion {--bs-accordion-bg:transparent; --bs-accordion-border-width:0; --bs-accordion-border-radius:0; --bs-accordion-inner-border-radius:0; --bs-accordion-btn-padding-x:0; --bs-accordion-btn-padding-y:12px; --bs-accordion-btn-color:var(--wbr-dark); --bs-accordion-active-color:var(--wbr-dark); --bs-accordion-active-bg:transparent; --bs-accordion-btn-focus-box-shadow:none; --bs-accordion-body-padding-x:0; --bs-accordion-body-padding-y:4px;}
@@ -109,7 +106,7 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .wbr-brands-toggle[aria-expanded="true"] .fa-chevron-down {transform:rotate(180deg);}
 
 /* Our Brands Panel */
-.wbr-brands-panel {display:none; z-index:1030; padding-block:24px 26px;}
+.wbr-brands-panel {display:none; padding-block:24px 26px;}
 .wbr-brands-panel.collapsing {transition:none;}
 .wbr-brands-panel.show {animation:wbr-panel-in .18s ease both;}
 @keyframes wbr-panel-in {from {opacity:0; transform:translateY(-8px);} to {opacity:1; transform:none;}}
@@ -193,5 +190,5 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
   .wbr-pulse-dot {animation:none;}
   .wbr-highlight {transition:none;}
   .wbr-brand-card:hover {transform:none;}
-  .wbr-arrow-link, .wbr-brands-toggle .fa-chevron-down {transition:none;}
+  .wbr-brands-toggle .fa-chevron-down {transition:none;}
 }

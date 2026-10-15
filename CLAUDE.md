@@ -34,6 +34,12 @@ To preview, open `index.html` in a browser.
   - Full-width bands (nav, Our brands panel, hero, Next up strip): `container-fluid`.
   - Content sections: `container-xxl`. It's full width up to 1400px, then caps at 1320px and centres, so text and grids don't stretch on big monitors.
 - Section spacing: `<section class="py-5">` with `<div class="container-xxl px-3 px-md-4 px-xl-5 py-lg-4">` inside, so padding stacks from 48px on phones to 72px on desktop (the design says 84px). Keep stacking to these two levels.
+- Check the Bootstrap docs for a built-in helper or component before writing CSS. Patterns in use:
+  - `hstack gap-*` instead of `d-flex align-items-center gap-*` (and `vstack` for columns).
+  - Arrow links: `icon-link icon-link-hover wbr-arrow-link`, with `bi` added to the Font Awesome arrow (`<i class="fa-solid fa-arrow-right bi">`). Bootstrap only animates icons that have the `bi` class.
+  - Nav link colours come from the navbar's variables (`--bs-navbar-color`, `--bs-navbar-hover-color`, `--bs-navbar-active-color`) on `.wbr-nav`.
+  - Stacking: `z-1` to `z-3` utilities rather than custom `z-index`.
+  - Coming up: `stretched-link` for clickable rows and cards, `card`, `ratio`, `badge rounded-pill`, `placeholder`.
 - Write custom CSS only for what Bootstrap can't do: hover, focus and open states, exact sizes it lacks, gradients, animation, letter-spacing and the type scale.
 
 ### Class names
@@ -57,6 +63,7 @@ To preview, open `index.html` in a browser.
 - Type classes: `.wbr-type-hero`, `-stat`, `-h2xl`, `-h2`, `-h3`, `-lead`, `-body`, `-small`, plus `.wbr-eyebrow` and `.fw-black` (weight 900).
 - Font sizes are in rem; padding, borders and image sizes stay in px.
 - Hero, stat, H2 XL and H2 are fluid. Change them by editing the plain px numbers in `style.css` (e.g. `--wbr-fs-hero-phone:36; --wbr-fs-hero-desktop:64;`); the `clamp()` formulas in `base.css` use them and never need editing. They scale from 375px to 992px.
+- The page starts with a "Skip to main content" link (`visually-hidden-focusable`) that appears on keyboard focus. Keep it as the first thing in `<body>`.
 - Respect `prefers-reduced-motion` for any new animation (see the Reduced Motion block in `base.css`).
 
 ### JavaScript

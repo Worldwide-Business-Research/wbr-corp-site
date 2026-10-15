@@ -36,7 +36,7 @@ To preview, open `index.html` in a browser.
 ### Class names
 - Custom classes start with `wbr-` and use plain hyphens: `wbr-brand-card`, `wbr-brand-card-logo`, `wbr-brand-card-more`. Use BEM (`__`, `--`) only if truly necessary.
 - Names must explain themselves: no abbreviations like `wbr-t-*`. Keep them short.
-- Page regions use `eco-` IDs, as on the live event sites: `#eco-header-top`, `#eco-primary-nav`, `#eco-content`, `#eco-hero`, `#eco-next-up`.
+- Page regions and sections get `wbr-` IDs: `#wbr-header`, `#wbr-nav`, `#wbr-content`, `#wbr-hero`, `#wbr-next-up`. Only add other IDs when something needs them (e.g. a Bootstrap `data-bs-target`). Don't use the live event sites' `eco-` names; this site isn't hosted on ECO.
 
 ### CSS format
 - One line per rule, grouped under banner headers like `/**** Hero ****/`. No other comments, except the px notes in `style.css`.

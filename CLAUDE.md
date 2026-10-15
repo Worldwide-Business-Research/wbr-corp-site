@@ -30,7 +30,10 @@ To preview, open `index.html` in a browser.
 
 ### Bootstrap first
 - Use Bootstrap 5.3 utility classes (spacing, flex, colour, borders, radius, shadow, `object-fit-*`) before writing CSS. Accept Bootstrap's spacing steps when the difference from the design is small.
-- Use Bootstrap containers, rows and columns for layout. The nav, Our brands panel, hero and Next up strip use `container-fluid px-3 px-md-4 px-xl-5` (full width). Each new section chooses between full width and `container-xl`; content-heavy grids usually suit `container-xl`.
+- Use Bootstrap containers, rows and columns for layout. Two container patterns, both with `px-3 px-md-4 px-xl-5` so edges line up with the nav up to 1400px:
+  - Full-width bands (nav, Our brands panel, hero, Next up strip): `container-fluid`.
+  - Content sections: `container-xxl`. It's full width up to 1400px, then caps at 1320px and centres, so text and grids don't stretch on big monitors.
+- Section spacing: `<section class="py-5">` with `<div class="container-xxl px-3 px-md-4 px-xl-5 py-lg-4">` inside, so padding stacks from 48px on phones to 72px on desktop (the design says 84px). Keep stacking to these two levels.
 - Write custom CSS only for what Bootstrap can't do: hover, focus and open states, exact sizes it lacks, gradients, animation, letter-spacing and the type scale.
 
 ### Class names
@@ -48,7 +51,7 @@ To preview, open `index.html` in a browser.
 - For hover shades and transparent tints use `color-mix()`, e.g. `color-mix(in srgb, var(--wbr-orange) 60%, transparent)`, not new variables or `rgba()`.
 - Links inside any `bg-dark` area are white with an orange hover automatically (one rule in `base.css`).
 - `.wbr-heading-font` also sets navy text, so add `text-white` when using it on a dark background.
-- Brand accent classes: `bg-wbr-blue|orange|green|cyan` and `text-wbr-*`. Conferences = blue, Connect Events = green, WBR Insights = cyan; orange is the call-to-action colour.
+- Brand accent classes: `bg-wbr-blue|orange|green|cyan`, `text-wbr-*`, and `link-wbr-green|cyan` for links that keep the orange hover. Conferences = blue, Connect Events = green, WBR Insights = cyan; orange is the call-to-action colour.
 
 ### Type and sizes
 - Type classes: `.wbr-type-hero`, `-stat`, `-h2xl`, `-h2`, `-h3`, `-lead`, `-body`, `-small`, plus `.wbr-eyebrow` and `.fw-black` (weight 900).
@@ -68,9 +71,9 @@ Plain JavaScript (jQuery is available in the CMS but not needed). Use Bootstrap'
 
 ## Status
 
-**Done (homepage):** nav with the Our brands panel and mobile menu, hero with search form and popular chips, Next up strip.
+**Done (homepage):** nav with the Our brands panel and mobile menu, hero with search form and popular chips, Next up strip, intro paragraph with highlight sweep and the three lines of business.
 
-**To do (homepage), in order:** intro paragraph and three lines of business; What Brings You to WBR?; sponsor proof and stats; What's on Next calendar; WBR Insights; community photo grid; sponsor logo marquee; footer. Then a style guide page, the Conference Finder and search.
+**To do (homepage), in order:** What Brings You to WBR?; sponsor proof and stats; What's on Next calendar; WBR Insights; community photo grid; sponsor logo marquee; footer. Then a style guide page, the Conference Finder and search.
 
 **Waiting on others**
 - Search: the hero search is a plain form that goes to `/conferences?q=…`. The live dropdown, the `/api/events/search` endpoint and the analytics event names need the dev team.

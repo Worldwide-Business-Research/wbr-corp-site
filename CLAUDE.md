@@ -2,7 +2,7 @@
 
 This file is the project guide for anyone working on the wbresearch.com redesign, including Claude Code, which reads it automatically.
 
-**Repository:** https://github.com/leo12534/wbr-corp-site
+**Repository:** https://github.com/Worldwide-Business-Research/wbr-corp-site
 
 ## What this is
 
@@ -10,7 +10,7 @@ A rebuild of the WBR corporate site in **Bootstrap 5.3.8**, page by page and sec
 
 ## The design handoff
 
-The designs live in `design_handoff_wbr_corporate_site/`, committed with the code. The repo is private; if it is ever made public, remove this folder first, since it holds the internal brief and event photography. Its `README.md` holds the full spec (colours, type, spacing and every section) and `reference/*.dc.html` are the visual references; open them in a browser and ignore the browser frame. `CHANGELOG.md` lists design changes after handoff.
+The designs live in `design_handoff_wbr_corporate_site/`, committed with the code. The repo is public, handoff included, with manager approval (October 2026). Its `README.md` holds the full spec (colours, type, spacing and every section) and `reference/*.dc.html` are the visual references; open them in a browser and ignore the browser frame. `CHANGELOG.md` lists design changes after handoff.
 
 ## Files
 

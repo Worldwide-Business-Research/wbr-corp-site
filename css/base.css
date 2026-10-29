@@ -60,6 +60,7 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .btn {font-family:var(--wbr-font-display); font-weight:700; font-size:var(--wbr-fs-body); display:inline-flex; align-items:center; justify-content:center; gap:8px;}
 .btn-wbr-primary {--bs-btn-bg:var(--wbr-orange); --bs-btn-border-color:var(--wbr-orange); --bs-btn-color:#fff; --bs-btn-hover-bg:var(--wbr-orange-hover); --bs-btn-hover-border-color:var(--wbr-orange-hover); --bs-btn-hover-color:#fff; --bs-btn-active-bg:var(--wbr-orange-hover); --bs-btn-active-border-color:var(--wbr-orange-hover); --bs-btn-active-color:#fff; padding:11px 20px;}
 .btn-wbr-primary i {font-size:var(--wbr-fs-small);}
+.btn-wbr-outline {--bs-btn-color:var(--wbr-dark); --bs-btn-border-color:var(--wbr-dark); --bs-btn-border-width:1.5px; --bs-btn-hover-bg:var(--wbr-dark); --bs-btn-hover-border-color:var(--wbr-dark); --bs-btn-hover-color:#fff; --bs-btn-active-bg:var(--wbr-dark); --bs-btn-active-border-color:var(--wbr-dark); --bs-btn-active-color:#fff;}
 
 /* Arrow Link */
 .wbr-arrow-link {font-family:var(--wbr-font-display); font-weight:700; gap:8px; --bs-icon-link-transform:translate3d(6px, 0, 0);}
@@ -187,6 +188,13 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .wbr-role-card-photo {height:128px;}
 .wbr-role-card-overlay {background:linear-gradient(180deg, color-mix(in srgb, var(--wbr-dark) 15%, transparent) 0%, color-mix(in srgb, var(--wbr-dark) 50%, transparent) 100%);}
 .wbr-role-card-color-bar {height:4px;}
+
+/********************************
+ Sponsor Proof And Stats
+********************************/
+.wbr-sponsor-photo {height:190px;}
+.wbr-stats {border-top:1px solid var(--wbr-grey-pale);}
+@media(min-width:992px){ .wbr-stat + .wbr-stat {border-left:1px solid var(--wbr-grey-pale);} }
 
 /********************************
  Reduced Motion

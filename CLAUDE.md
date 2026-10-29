@@ -79,9 +79,9 @@ Plain JavaScript (jQuery is available in the CMS but not needed). Use Bootstrap'
 
 ## Status
 
-**Done (homepage):** nav with the Our brands panel and mobile menu, hero with search form and popular chips, Next up strip, intro paragraph with highlight sweep and the three lines of business, What Brings You to WBR? (three role cards).
+**Done (homepage):** nav with the Our brands panel and mobile menu, hero with search form and popular chips, Next up strip, intro paragraph with highlight sweep and the three lines of business, What Brings You to WBR? (three role cards), sponsor proof and stats.
 
-**To do (homepage), in order:** sponsor proof and stats; What's on Next calendar; WBR Insights; community photo grid; sponsor logo marquee; footer. Then a style guide page, the Conference Finder and search.
+**To do (homepage), in order:** What's on Next calendar; WBR Insights; community photo grid; sponsor logo marquee; footer. Then a style guide page, the Conference Finder and search.
 
 **Waiting on others**
 - Search: the hero search is a plain form that goes to `/conferences?q=…`. The live dropdown, the `/api/events/search` endpoint and the analytics event names need the dev team.

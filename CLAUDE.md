@@ -39,7 +39,8 @@ To preview, open `index.html` in a browser.
   - Arrow links: `icon-link icon-link-hover wbr-arrow-link`, with `bi` added to the Font Awesome arrow (`<i class="fa-solid fa-arrow-right bi">`). Bootstrap only animates icons that have the `bi` class.
   - Nav link colours come from the navbar's variables (`--bs-navbar-color`, `--bs-navbar-hover-color`, `--bs-navbar-active-color`) on `.wbr-nav`.
   - Stacking: `z-1` to `z-3` utilities rather than custom `z-index`.
-  - Coming up: `stretched-link` for clickable rows and cards, `card`, `ratio`, `badge rounded-pill`, `placeholder`.
+  - Clickable cards: `card` with `stretched-link` on the card's arrow link (role cards).
+  - Coming up: `ratio`, `badge rounded-pill`, `placeholder`.
 - Write custom CSS only for what Bootstrap can't do: hover, focus and open states, exact sizes it lacks, gradients, animation, letter-spacing and the type scale.
 
 ### Class names
@@ -57,10 +58,10 @@ To preview, open `index.html` in a browser.
 - For hover shades and transparent tints use `color-mix()`, e.g. `color-mix(in srgb, var(--wbr-orange) 60%, transparent)`, not new variables or `rgba()`.
 - Links inside any `bg-dark` area are white with an orange hover automatically (one rule in `base.css`).
 - `.wbr-heading-font` also sets navy text, so add `text-white` when using it on a dark background.
-- Brand accent classes: `bg-wbr-blue|orange|green|cyan`, `text-wbr-*`, and `link-wbr-green|cyan` for links that keep the orange hover. Conferences = blue, Connect Events = green, WBR Insights = cyan; orange is the call-to-action colour.
+- Brand accent classes: `bg-wbr-blue|orange|green|cyan`, `text-wbr-*`, and `link-wbr-orange|green|cyan` for links that keep the orange hover. Conferences = blue, Connect Events = green, WBR Insights = cyan; orange is the call-to-action colour.
 
 ### Type and sizes
-- Type classes: `.wbr-type-hero`, `-stat`, `-h2xl`, `-h2`, `-h3`, `-lead`, `-body`, `-small`, plus `.wbr-eyebrow` and `.fw-black` (weight 900).
+- Type classes: `.wbr-type-hero`, `-stat`, `-h2xl`, `-h2`, `-h3`, `-lead`, plus `.wbr-eyebrow` and `.fw-black` (weight 900). Eyebrows take their size from Bootstrap's `small` (`class="wbr-eyebrow small"`, about 13px; the handoff says 11.5px). The hero eyebrow leaves `small` off, so it stays at the 15px body size. Other 13px text also uses `small`; body text needs no class.
 - Font sizes are in rem; padding, borders and image sizes stay in px.
 - Hero, stat, H2 XL and H2 are fluid. Change them by editing the plain px numbers in `style.css` (e.g. `--wbr-fs-hero-phone:36; --wbr-fs-hero-desktop:64;`); the `clamp()` formulas in `base.css` use them and never need editing. They scale from 375px to 992px.
 - The page starts with a "Skip to main content" link (`visually-hidden-focusable`) that appears on keyboard focus. Keep it as the first thing in `<body>`.
@@ -78,9 +79,9 @@ Plain JavaScript (jQuery is available in the CMS but not needed). Use Bootstrap'
 
 ## Status
 
-**Done (homepage):** nav with the Our brands panel and mobile menu, hero with search form and popular chips, Next up strip, intro paragraph with highlight sweep and the three lines of business.
+**Done (homepage):** nav with the Our brands panel and mobile menu, hero with search form and popular chips, Next up strip, intro paragraph with highlight sweep and the three lines of business, What Brings You to WBR? (three role cards).
 
-**To do (homepage), in order:** What Brings You to WBR?; sponsor proof and stats; What's on Next calendar; WBR Insights; community photo grid; sponsor logo marquee; footer. Then a style guide page, the Conference Finder and search.
+**To do (homepage), in order:** sponsor proof and stats; What's on Next calendar; WBR Insights; community photo grid; sponsor logo marquee; footer. Then a style guide page, the Conference Finder and search.
 
 **Waiting on others**
 - Search: the hero search is a plain form that goes to `/conferences?q=…`. The live dropdown, the `/api/events/search` endpoint and the analytics event names need the dev team.

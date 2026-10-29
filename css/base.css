@@ -32,9 +32,7 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .wbr-type-h2 {font-size:var(--wbr-fs-h2); font-weight:900; line-height:1.08; letter-spacing:-0.015em;}
 .wbr-type-h3 {font-size:var(--wbr-fs-h3); font-weight:700; line-height:1.3; letter-spacing:-0.005em;}
 .wbr-type-lead {font-size:var(--wbr-fs-lead); line-height:1.55;}
-.wbr-type-body {font-size:var(--wbr-fs-body); line-height:1.6;}
-.wbr-type-small {font-size:var(--wbr-fs-small); line-height:1.5;}
-.wbr-eyebrow {font-family:var(--wbr-font-display); font-size:var(--wbr-fs-eyebrow); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--wbr-orange);}
+.wbr-eyebrow {font-family:var(--wbr-font-display); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--wbr-orange);}
 
 /********************************
  Utility Classes
@@ -52,6 +50,7 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .text-wbr-green {color:var(--wbr-green);}
 .text-wbr-cyan {color:var(--wbr-cyan);}
 
+.link-wbr-orange {--bs-link-color-rgb:240, 148, 45;}
 .link-wbr-green {--bs-link-color-rgb:51, 170, 153;}
 .link-wbr-cyan {--bs-link-color-rgb:3, 174, 239;}
 
@@ -63,7 +62,7 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .btn-wbr-primary i {font-size:var(--wbr-fs-small);}
 
 /* Arrow Link */
-.wbr-arrow-link {font-family:var(--wbr-font-display); font-weight:700;}
+.wbr-arrow-link {font-family:var(--wbr-font-display); font-weight:700; gap:8px; --bs-icon-link-transform:translate3d(6px, 0, 0);}
 .wbr-arrow-link .bi {font-size:0.75rem;}
 
 /********************************
@@ -116,7 +115,7 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 
 /* Brand Card */
 .wbr-brand-card {color:var(--wbr-dark); transition:box-shadow .18s ease, transform .18s ease;}
-.wbr-brand-card:hover {color:var(--wbr-dark); box-shadow:0 12px 26px color-mix(in srgb, var(--wbr-dark) 12%, transparent); transform:translateY(-2px);}
+.wbr-brand-card:hover, .wbr-brand-card:focus-visible {color:var(--wbr-dark); box-shadow:0 12px 26px color-mix(in srgb, var(--wbr-dark) 12%, transparent); transform:translateY(-2px);}
 .wbr-brand-card-logo {height:26px;}
 .wbr-brand-card-logo img {max-height:24px; max-width:150px;}
 .wbr-brand-card-color-bar {width:26px; height:3px; border-radius:2px;}
@@ -130,7 +129,6 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .wbr-hero-image {object-position:center 30%;}
 .wbr-hero-overlay {background:linear-gradient(0deg, color-mix(in srgb, var(--wbr-ink) 88%, transparent) 0%, color-mix(in srgb, var(--wbr-ink) 60%, transparent) 50%, color-mix(in srgb, var(--wbr-ink) 20%, transparent) 100%);}
 .wbr-hero-content {max-width:760px;}
-.wbr-hero-eyebrow {font-size:var(--wbr-fs-body);}
 .wbr-hero-text {max-width:540px;}
 
 /* Hero Search */
@@ -161,7 +159,6 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 /********************************
  Next Up Strip
 ********************************/
-.wbr-next-up-label {font-size:var(--wbr-fs-small);}
 .wbr-pulse-dot {width:9px; height:9px; flex-shrink:0; box-shadow:0 0 0 4px color-mix(in srgb, var(--wbr-orange) 25%, transparent); animation:wbr-pulse 2s ease-out infinite;}
 @keyframes wbr-pulse {0% {box-shadow:0 0 0 0 color-mix(in srgb, var(--wbr-orange) 55%, transparent);} 70%, 100% {box-shadow:0 0 0 9px transparent;}}
 
@@ -183,12 +180,22 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 @media(min-width:768px){ .wbr-business-line + .wbr-business-line {border-top:0; border-left:1px solid var(--wbr-line);} }
 
 /********************************
+ What Brings You To WBR
+********************************/
+.wbr-role-card {transition:transform .22s ease, box-shadow .22s ease;}
+.wbr-role-card:hover, .wbr-role-card:focus-within {transform:translateY(-8px); box-shadow:0 26px 54px color-mix(in srgb, var(--wbr-ink) 15%, transparent);}
+.wbr-role-card-photo {height:128px;}
+.wbr-role-card-overlay {background:linear-gradient(180deg, color-mix(in srgb, var(--wbr-dark) 15%, transparent) 0%, color-mix(in srgb, var(--wbr-dark) 50%, transparent) 100%);}
+.wbr-role-card-color-bar {height:4px;}
+
+/********************************
  Reduced Motion
 ********************************/
 @media(prefers-reduced-motion:reduce){
   .wbr-brands-panel.show {animation:none;}
   .wbr-pulse-dot {animation:none;}
   .wbr-highlight {transition:none;}
-  .wbr-brand-card:hover {transform:none;}
+  .wbr-brand-card:hover, .wbr-brand-card:focus-visible {transform:none;}
+  .wbr-role-card:hover, .wbr-role-card:focus-within {transform:none;}
   .wbr-brands-toggle .fa-chevron-down {transition:none;}
 }

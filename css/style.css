@@ -42,7 +42,6 @@ Description: Bootstrap 5.3 theme for wbresearch.com
   --wbr-fs-lead:1.1875rem;     /* 19px */
   --wbr-fs-body:0.9375rem;     /* 15px */
   --wbr-fs-small:0.8125rem;    /* 13px */
-  --wbr-fs-eyebrow:0.71875rem; /* 11.5px */
 
   /* Bootstrap overrides: points Bootstrap at the WBR colours above */
   --bs-body-font-family:var(--wbr-font-body);

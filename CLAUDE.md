@@ -39,8 +39,10 @@ To preview, open `index.html` in a browser.
   - Arrow links: `icon-link icon-link-hover wbr-arrow-link`, with `bi` added to the Font Awesome arrow (`<i class="fa-solid fa-arrow-right bi">`). Bootstrap only animates icons that have the `bi` class.
   - Nav link colours come from the navbar's variables (`--bs-navbar-color`, `--bs-navbar-hover-color`, `--bs-navbar-active-color`) on `.wbr-nav`.
   - Stacking: `z-1` to `z-3` utilities rather than custom `z-index`.
-  - Clickable cards: `card` with `stretched-link` on the card's arrow link (role cards).
-  - Coming up: `ratio`, `badge rounded-pill`, `placeholder`.
+  - Clickable cards and rows: `stretched-link` on the main link (role cards, event rows). Buttons inside a clickable row get `position-relative z-2` so they stay clickable.
+  - Buttons: `btn` plus `btn-wbr-primary` (orange), `-outline` (navy outline), `-outline-light` (grey outline), `-blue` or `-dark`. Add `btn-sm` for small row buttons.
+  - Pills: `badge rounded-pill` (region tags).
+  - Coming up: `ratio`, `placeholder`.
 - Write custom CSS only for what Bootstrap can't do: hover, focus and open states, exact sizes it lacks, gradients, animation, letter-spacing and the type scale.
 
 ### Class names
@@ -79,9 +81,9 @@ Plain JavaScript (jQuery is available in the CMS but not needed). Use Bootstrap'
 
 ## Status
 
-**Done (homepage):** nav with the Our brands panel and mobile menu, hero with search form and popular chips, Next up strip, intro paragraph with highlight sweep and the three lines of business, What Brings You to WBR? (three role cards), sponsor proof and stats.
+**Done (homepage):** nav with the Our brands panel and mobile menu, hero with search form and popular chips, Next up strip, intro paragraph with highlight sweep and the three lines of business, What Brings You to WBR? (three role cards), sponsor proof and stats, What's on Next calendar.
 
-**To do (homepage), in order:** What's on Next calendar; WBR Insights; community photo grid; sponsor logo marquee; footer. Then a style guide page, the Conference Finder and search.
+**To do (homepage), in order:** WBR Insights; community photo grid; sponsor logo marquee; footer. Then a style guide page, the Conference Finder and search.
 
 **Waiting on others**
 - Search: the hero search is a plain form that goes to `/conferences?q=…`. The live dropdown, the `/api/events/search` endpoint and the analytics event names need the dev team.

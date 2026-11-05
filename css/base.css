@@ -53,6 +53,7 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .link-wbr-orange {--bs-link-color-rgb:240, 148, 45;}
 .link-wbr-green {--bs-link-color-rgb:51, 170, 153;}
 .link-wbr-cyan {--bs-link-color-rgb:3, 174, 239;}
+.link-wbr-dark {--bs-link-color-rgb:37, 58, 99;}
 
 /********************************
  Buttons
@@ -238,6 +239,15 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 }
 
 /********************************
+ Sponsor Marquee
+********************************/
+.wbr-marquee {mask-image:linear-gradient(90deg, transparent, #000 60px, #000 calc(100% - 60px), transparent);}
+.wbr-marquee-track {width:max-content; animation:wbr-marquee 46s linear infinite;}
+.wbr-marquee:hover .wbr-marquee-track {animation-play-state:paused;}
+.wbr-marquee-track img {height:38px; max-width:150px;}
+@keyframes wbr-marquee {to {transform:translateX(-50%);}}
+
+/********************************
  Reduced Motion
 ********************************/
 @media(prefers-reduced-motion:reduce){
@@ -246,5 +256,6 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
   .wbr-highlight {transition:none;}
   .wbr-brand-card:hover, .wbr-brand-card:focus-visible {transform:none;}
   .wbr-card-lift:hover, .wbr-card-lift:focus-within {transform:none;}
+  .wbr-marquee-track {animation:none;}
   .wbr-brands-toggle .fa-chevron-down {transition:none;}
 }

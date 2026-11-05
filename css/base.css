@@ -53,6 +53,7 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .link-wbr-orange {--bs-link-color-rgb:240, 148, 45;}
 .link-wbr-green {--bs-link-color-rgb:51, 170, 153;}
 .link-wbr-cyan {--bs-link-color-rgb:3, 174, 239;}
+.link-wbr-dark {--bs-link-color-rgb:37, 58, 99;}
 
 /********************************
  Buttons
@@ -69,6 +70,13 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 /* Arrow Link */
 .wbr-arrow-link {font-family:var(--wbr-font-display); font-weight:700; gap:8px; --bs-icon-link-transform:translate3d(6px, 0, 0);}
 .wbr-arrow-link .bi {font-size:0.75rem;}
+
+/********************************
+ Cards And Tags
+********************************/
+.wbr-card-lift {transition:transform .22s ease, box-shadow .22s ease;}
+.wbr-card-lift:hover, .wbr-card-lift:focus-within {transform:translateY(-8px); box-shadow:0 26px 54px color-mix(in srgb, var(--wbr-ink) 15%, transparent);}
+.wbr-tag {font-family:var(--wbr-font-display); letter-spacing:.08em;}
 
 /********************************
  Primary Navigation
@@ -187,8 +195,6 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 /********************************
  What Brings You To WBR
 ********************************/
-.wbr-role-card {transition:transform .22s ease, box-shadow .22s ease;}
-.wbr-role-card:hover, .wbr-role-card:focus-within {transform:translateY(-8px); box-shadow:0 26px 54px color-mix(in srgb, var(--wbr-ink) 15%, transparent);}
 .wbr-role-card-photo {height:128px;}
 .wbr-role-card-overlay {background:linear-gradient(180deg, color-mix(in srgb, var(--wbr-dark) 15%, transparent) 0%, color-mix(in srgb, var(--wbr-dark) 50%, transparent) 100%);}
 .wbr-role-card-color-bar {height:4px;}
@@ -216,10 +222,30 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 }
 
 /* Region Tag */
-.wbr-region-tag {font-family:var(--wbr-font-display); letter-spacing:.08em;}
 .wbr-region-americas {color:var(--wbr-blue); background:color-mix(in srgb, var(--wbr-blue) 12%, white);}
 .wbr-region-europe {color:color-mix(in srgb, var(--wbr-green), black 30%); background:color-mix(in srgb, var(--wbr-green) 12%, white);}
 .wbr-region-asia {color:color-mix(in srgb, var(--wbr-orange), black 36%); background:color-mix(in srgb, var(--wbr-orange) 12%, white);}
+
+/********************************
+ Community
+********************************/
+.wbr-community-photo {height:150px;}
+.wbr-community-photo-lead {height:240px;}
+.wbr-glow::after {content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(130% 130% at 100% 100%, color-mix(in srgb, var(--wbr-orange) 55%, transparent) 0%, color-mix(in srgb, var(--wbr-orange) 24%, transparent) 26%, color-mix(in srgb, var(--wbr-orange) 6%, transparent) 48%, transparent 66%);}
+@media(min-width:768px){
+  .wbr-community-photo {height:190px;}
+  .wbr-community-photo-tall {height:270px;}
+  .wbr-community-photo-lead {height:100%;}
+}
+
+/********************************
+ Sponsor Marquee
+********************************/
+.wbr-marquee {mask-image:linear-gradient(90deg, transparent, #000 60px, #000 calc(100% - 60px), transparent);}
+.wbr-marquee-track {width:max-content; animation:wbr-marquee 46s linear infinite;}
+.wbr-marquee:hover .wbr-marquee-track {animation-play-state:paused;}
+.wbr-marquee-track img {height:38px; max-width:150px;}
+@keyframes wbr-marquee {to {transform:translateX(-50%);}}
 
 /********************************
  Reduced Motion
@@ -229,6 +255,7 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
   .wbr-pulse-dot {animation:none;}
   .wbr-highlight {transition:none;}
   .wbr-brand-card:hover, .wbr-brand-card:focus-visible {transform:none;}
-  .wbr-role-card:hover, .wbr-role-card:focus-within {transform:none;}
+  .wbr-card-lift:hover, .wbr-card-lift:focus-within {transform:none;}
+  .wbr-marquee-track {animation:none;}
   .wbr-brands-toggle .fa-chevron-down {transition:none;}
 }

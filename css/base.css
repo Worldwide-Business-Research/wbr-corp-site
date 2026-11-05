@@ -226,6 +226,18 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .wbr-region-asia {color:color-mix(in srgb, var(--wbr-orange), black 36%); background:color-mix(in srgb, var(--wbr-orange) 12%, white);}
 
 /********************************
+ Community
+********************************/
+.wbr-community-photo {height:150px;}
+.wbr-community-photo-lead {height:240px;}
+.wbr-glow::after {content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(130% 130% at 100% 100%, color-mix(in srgb, var(--wbr-orange) 55%, transparent) 0%, color-mix(in srgb, var(--wbr-orange) 24%, transparent) 26%, color-mix(in srgb, var(--wbr-orange) 6%, transparent) 48%, transparent 66%);}
+@media(min-width:768px){
+  .wbr-community-photo {height:190px;}
+  .wbr-community-photo-tall {height:270px;}
+  .wbr-community-photo-lead {height:100%;}
+}
+
+/********************************
  Reduced Motion
 ********************************/
 @media(prefers-reduced-motion:reduce){

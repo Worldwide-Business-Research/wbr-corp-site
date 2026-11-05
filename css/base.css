@@ -210,7 +210,8 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
  What's On Next
 ********************************/
 .wbr-event-row {transition:background-color .15s ease;}
-.wbr-event-row:hover {background:#fff;}
+.wbr-event-row:hover {background:var(--wbr-mist);}
+.bg-light .wbr-event-row:hover {background:#fff;}
 .wbr-event-row-date {width:84px;}
 .wbr-event-row-day {font-variant-numeric:tabular-nums;}
 .wbr-event-row-logo {width:150px;}
@@ -225,6 +226,13 @@ h1, h2, h3, h4, .wbr-heading-font {font-family:var(--wbr-font-display); color:va
 .wbr-region-americas {color:var(--wbr-blue); background:color-mix(in srgb, var(--wbr-blue) 12%, white);}
 .wbr-region-europe {color:color-mix(in srgb, var(--wbr-green), black 30%); background:color-mix(in srgb, var(--wbr-green) 12%, white);}
 .wbr-region-asia {color:color-mix(in srgb, var(--wbr-orange), black 36%); background:color-mix(in srgb, var(--wbr-orange) 12%, white);}
+
+/********************************
+ Conference Finder
+********************************/
+.wbr-finder-header-overlay {background:linear-gradient(180deg, color-mix(in srgb, var(--wbr-mist) 20%, transparent) 0%, color-mix(in srgb, var(--wbr-mist) 75%, transparent) 100%);}
+.breadcrumb {--bs-breadcrumb-divider:'›';}
+.wbr-finder-empty {border:1px dashed var(--wbr-grey-pale);}
 
 /********************************
  Community

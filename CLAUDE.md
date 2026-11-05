@@ -17,14 +17,16 @@ The designs live in `design_handoff_wbr_corporate_site/`, committed with the cod
 | Path | What it is |
 |---|---|
 | `index.html` | Homepage preview. It has a full `<head>` for local viewing; copy only what's between `<body>` and `</body>` into the CMS. |
+| `conferences.html` | Conference Finder preview (`/conferences`), same nav and footer as the homepage. The event row, month group and filter pill markup sits in `<template>` tags at the end of `<main>`. |
 | `css/style.css` | **Variables only**: brand colours, fonts, font sizes and the Bootstrap overrides. Edit values here. |
 | `css/base.css` | Everything else: global styles, type classes, components and sections, under banner headers. |
 | `js/scripts.js` | Plain JavaScript. Closes the Our brands panel on Esc or a click outside. |
+| `js/finder.js` | Conference Finder only: filters, sorts and groups the events, and keeps the filters in the URL. The event list at the top is placeholder data standing in for `/api/events/search`. |
 | `img/` | Logo, brand logos (`img/brands/`) and photos (`img/photos/`). |
 
-Load order: Bootstrap CSS → Google Fonts (Lato, Open Sans) → Font Awesome 6.5 → `css/base.css` → `css/style.css`. Scripts: `bootstrap.bundle.min.js` **before** `js/scripts.js`.
+Load order: Bootstrap CSS → Google Fonts (Lato, Open Sans) → Font Awesome 6.5 → `css/base.css` → `css/style.css`. Scripts: `bootstrap.bundle.min.js` **before** `js/scripts.js` (then `js/finder.js` on the Finder).
 
-To preview, open `index.html` in a browser.
+To preview, open `index.html` or `conferences.html` in a browser. Links use the live URLs (`/conferences`), so they don't work between local files.
 
 ## Conventions
 
@@ -39,6 +41,10 @@ To preview, open `index.html` in a browser.
   - Arrow links: `icon-link icon-link-hover wbr-arrow-link`, with `bi` added to the Font Awesome arrow (`<i class="fa-solid fa-arrow-right bi">`). Bootstrap only animates icons that have the `bi` class.
   - Nav link colours come from the navbar's variables (`--bs-navbar-color`, `--bs-navbar-hover-color`, `--bs-navbar-active-color`) on `.wbr-nav`.
   - Stacking: `z-1` to `z-3` utilities rather than custom `z-index`.
+  - Gutters: keep a row's gutter no wider than twice the container padding, or the page scrolls sideways. On phones (`px-3`, 16px) use up to `g-4`; `g-5` only from md (`g-4 g-md-5`).
+  - Shared pieces: `wbr-card-lift` (cards that lift on hover) and `wbr-tag` (uppercase pills: region, Report, event type).
+  - Phone bottom sheets: `offcanvas-md offcanvas-bottom` (the Finder filters). The same markup is a sheet below 768px and normal content above it.
+  - Sort toggles: `btn-check` radios in a `btn-group`.
   - Clickable cards and rows: `stretched-link` on the main link (role cards, event rows). Buttons inside a clickable row get `position-relative z-2` so they stay clickable.
   - Buttons: `btn` plus `btn-wbr-primary` (orange), `-outline` (navy outline), `-outline-light` (grey outline), `-blue` or `-dark`. Add `btn-sm` for small row buttons.
   - Pills: `badge rounded-pill` (region tags).
@@ -81,16 +87,23 @@ Plain JavaScript (jQuery is available in the CMS but not needed). Use Bootstrap'
 
 ## Status
 
-**Done (homepage):** nav with the Our brands panel and mobile menu, hero with search form and popular chips, Next up strip, intro paragraph with highlight sweep and the three lines of business, What Brings You to WBR? (three role cards), sponsor proof and stats, What's on Next calendar.
+**Done (homepage):** nav with the Our brands panel and mobile menu, hero with search form and popular chips, Next up strip, intro paragraph with highlight sweep and the three lines of business, What Brings You to WBR? (three role cards), sponsor proof and stats, What's on Next calendar, WBR Insights, community photo grid, sponsor logo marquee, footer.
 
-**To do (homepage), in order:** WBR Insights; community photo grid; sponsor logo marquee; footer. Then a style guide page, the Conference Finder and search.
+**Done (Conference Finder):** header band with breadcrumb and filter bar (bottom sheet on phones), results with count, removable filter pills, Date/Name sort, month groups and the empty state. Filters are reflected in the URL and the back button works.
+
+**To do:** a style guide page; the hero search dropdown (needs the dev team's endpoint, see below).
 
 **Waiting on others**
 - Search: the hero search is a plain form that goes to `/conferences?q=…`. The live dropdown, the `/api/events/search` endpoint and the analytics event names need the dev team.
 - Content: event data, stats, the sponsor quote and Insights content are placeholders, to be wired to the CMS.
 - Photos: the hero photo is only 1024px wide; it needs a version at least 2000px wide.
+- Finder: the server has to render the results and the From/To month options from the URL (the handoff requires it, for no-JS and indexing). For now `js/finder.js` fills them in the browser.
+- Footer logo: the JPG logo sits on a white tile until there is an SVG (or white) version for dark backgrounds.
 
 **Known trade-offs**
 - The page edge is 48px on desktop (Bootstrap's `px-5`), not the design's 72px.
 - Popular chips are about 30px tall, below the handoff's 44px minimum tap target.
 - Lead text and the hero eyebrow are fixed sizes (19px, 15px) rather than fluid.
+- Sponsor logos don't use the handoff's `mix-blend-mode: multiply`. The marquee's fade edges are a CSS mask, which cancels the blend; on the white band the JPGs' white backgrounds don't show anyway.
+- Footer link columns are 2 across on phones (the handoff suggests 1), and footer links are below the 44px tap target.
+- Sector colours in the Finder reuse the four brand accents; the handoff's orange-pale and grey swatches weren't added.

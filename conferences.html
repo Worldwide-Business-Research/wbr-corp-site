@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find an Event | WBR</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="visually-hidden-focusable btn btn-wbr-primary position-absolute top-0 start-0 m-2 z-3" href="#wbr-content">Skip to main content</a>
+
+<header id="wbr-header" class="position-relative bg-white border-bottom">
+  <nav id="wbr-nav" class="navbar navbar-expand-lg wbr-nav" aria-label="Main">
+    <div class="container-fluid px-3 px-md-4 px-xl-5">
+      <div class="hstack gap-3">
+        <a class="navbar-brand p-0 m-0" href="/">
+          <img src="img/wbr-logo.jpg" alt="WBR" class="wbr-nav-logo d-block">
+        </a>
+        <span class="vr d-none d-sm-block"></span>
+        <button class="wbr-brands-toggle d-none d-sm-inline-flex align-items-center gap-2 py-2 px-3 rounded-2 fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#wbr-brands-panel" aria-expanded="false" aria-controls="wbr-brands-panel">
+          <span class="wbr-brands-toggle-dots hstack gap-1" aria-hidden="true"><span class="bg-wbr-blue"></span><span class="bg-wbr-orange"></span><span class="bg-wbr-green"></span></span>
+          Our brands
+          <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="d-flex d-lg-none align-items-center gap-2">
+        <a class="btn btn-wbr-primary wbr-nav-cta-mobile" href="/conferences">Find an event <i class="fa-solid fa-arrow-right d-none d-sm-inline" aria-hidden="true"></i></a>
+        <button class="navbar-toggler p-0 border-0 text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#wbr-nav-menu" aria-controls="wbr-nav-menu" aria-label="Open menu">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div id="wbr-nav-menu" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="wbr-nav-menu-label">
+        <div class="offcanvas-header border-bottom">
+          <img id="wbr-nav-menu-label" src="img/wbr-logo.jpg" alt="WBR" class="wbr-nav-logo">
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+        </div>
+        <div class="offcanvas-body ms-lg-auto align-items-lg-center gap-lg-4">
+          <ul class="navbar-nav gap-lg-4">
+            <li class="nav-item"><a class="nav-link fw-semibold active" href="/conferences" aria-current="page">Conferences</a></li>
+            <li class="nav-item"><a class="nav-link fw-semibold" href="#">Connect Events</a></li>
+            <li class="nav-item"><a class="nav-link fw-semibold" href="#">WBR Insights</a></li>
+            <li class="nav-item"><a class="nav-link fw-semibold" href="#">About Us</a></li>
+          </ul>
+
+          <div class="accordion d-sm-none" id="wbr-nav-brands-accordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#wbr-nav-brands" aria-expanded="false" aria-controls="wbr-nav-brands">Our brands</button>
+              </h2>
+              <div id="wbr-nav-brands" class="accordion-collapse collapse" data-bs-parent="#wbr-nav-brands-accordion">
+                <div class="accordion-body">
+                  <a class="wbr-nav-brand-link hstack gap-3 py-2 text-body-secondary small" href="#"><img src="img/brands/etail.svg" alt="eTail" class="object-fit-contain">Retail and eCommerce</a>
+                  <a class="wbr-nav-brand-link hstack gap-3 py-2 text-body-secondary small" href="#"><img src="img/brands/logipharma.svg" alt="LogiPharma" class="object-fit-contain">Pharma supply chain</a>
+                  <a class="wbr-nav-brand-link hstack gap-3 py-2 text-body-secondary small" href="#"><img src="img/brands/procurecon.svg" alt="ProcureCon" class="object-fit-contain">Procurement and sourcing</a>
+                  <a class="icon-link icon-link-hover wbr-arrow-link py-2" href="#">See all brands <i class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a class="btn btn-wbr-primary d-none d-lg-inline-flex" href="/conferences">Find an event <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="wbr-brands-panel" class="wbr-brands-panel collapse position-absolute top-100 start-0 end-0 z-3 bg-light border-bottom shadow-lg">
+    <div class="container-fluid px-3 px-md-4 px-xl-5">
+      <div class="d-flex align-items-end justify-content-between mb-4">
+        <div>
+          <div class="wbr-eyebrow small">The WBR family</div>
+          <div class="wbr-heading-font wbr-type-h3 fw-black mt-2">40+ event brands, one research house.</div>
+        </div>
+        <a class="icon-link icon-link-hover wbr-arrow-link" href="#">See all brands <i class="fa-solid fa-arrow-right bi" aria-hidden="true"></i></a>
+      </div>
+      <div class="row row-cols-2 row-cols-lg-4 g-3">
+        <div class="col">
+          <a class="wbr-brand-card d-flex flex-column gap-3 h-100 p-4 bg-white border rounded-3" href="#">
+            <div class="wbr-brand-card-logo hstack"><img src="img/brands/etail.svg" alt="eTail" class="object-fit-contain"></div>
+            <div class="wbr-brand-card-color-bar bg-wbr-orange"></div>
+            <div class="small text-body-secondary">Retail and eCommerce leaders, since 1999.</div>
+            <div class="wbr-eyebrow small text-dark">8 events</div>
+          </a>
+        </div>
+        <div class="col">
+          <a class="wbr-brand-card d-flex flex-column gap-3 h-100 p-4 bg-white border rounded-3" href="#">
+            <div class="wbr-brand-card-logo hstack"><img src="img/brands/logipharma.svg" alt="LogiPharma" class="object-fit-contain"></div>
+            <div class="wbr-brand-card-color-bar bg-wbr-blue"></div>
+            <div class="small text-body-secondary">Pharma supply chain, end to end.</div>
+            <div class="wbr-eyebrow small text-dark">5 events</div>
+          </a>
+        </div>
+        <div class="col">
+          <a class="wbr-brand-card d-flex flex-column gap-3 h-100 p-4 bg-white border rounded-3" href="#">
+            <div class="wbr-brand-card-logo hstack"><img src="img/brands/procurecon.svg" alt="ProcureCon" class="object-fit-contain"></div>
+            <div class="wbr-brand-card-color-bar bg-wbr-green"></div>
+            <div class="small text-body-secondary">Procurement and strategic sourcing.</div>
+            <div class="wbr-eyebrow small text-dark">11 events</div>
+          </a>
+        </div>
+        <div class="col">
+          <a class="wbr-brand-card wbr-brand-card-more d-flex flex-column justify-content-center gap-2 h-100 p-4 rounded-3" href="#">
+            <div class="wbr-heading-font wbr-type-h3 fw-black">+37 more</div>
+            <div class="small text-body-secondary">Finance, customer experience, HR, field service and technology.</div>
+            <div class="small fw-bold text-wbr-blue">Browse the portfolio <i class="fa-solid fa-arrow-right ms-1" aria-hidden="true"></i></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="wbr-content">
+
+  <section id="wbr-finder-header" class="position-relative bg-light border-bottom overflow-hidden py-5">
+    <img src="img/photos/finder-header.jpg" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover opacity-25">
+    <div class="wbr-finder-header-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+    <div class="container-xxl px-3 px-md-4 px-xl-5 position-relative">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb small mb-0">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active fw-semibold text-dark" aria-current="page">Conferences</li>
+        </ol>
+      </nav>
+      <div class="wbr-eyebrow small mt-4">100+ conferences a year</div>
+      <h1 class="wbr-type-h2xl mt-3 mb-0">Find an Event</h1>
+
+      <form id="wbr-finder-form" class="bg-white border rounded-4 shadow-sm p-3 p-md-4 mt-4" action="/conferences" method="get" role="search" aria-label="Filter events">
+        <div class="row g-3 align-items-end">
+          <div class="col-12 col-lg-4">
+            <label class="form-label small fw-semibold text-body-secondary" for="wbr-finder-q">Keyword</label>
+            <div class="d-flex gap-2">
+              <div class="input-group">
+                <span class="input-group-text bg-white text-body-secondary"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+                <input id="wbr-finder-q" class="form-control border-start-0 ps-0" type="search" name="q" placeholder="Event, city or topic" autocomplete="off">
+              </div>
+              <button class="btn btn-wbr-outline-light d-md-none flex-shrink-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#wbr-finder-filters" aria-controls="wbr-finder-filters"><i class="fa-solid fa-sliders" aria-hidden="true"></i>Filters</button>
+            </div>
+          </div>
+          <div class="col-12 col-lg-8 mt-0 mt-md-3">
+            <div id="wbr-finder-filters" class="offcanvas-md offcanvas-bottom h-auto rounded-top-4" tabindex="-1" aria-labelledby="wbr-finder-filters-label">
+              <div class="offcanvas-header border-bottom">
+                <h2 id="wbr-finder-filters-label" class="wbr-type-h3 mb-0">Filters</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#wbr-finder-filters" aria-label="Close filters"></button>
+              </div>
+              <div class="offcanvas-body flex-column">
+                <div class="row g-3">
+                  <div class="col-12 col-md-3">
+                    <label class="form-label small fw-semibold text-body-secondary" for="wbr-finder-region">Region</label>
+                    <select id="wbr-finder-region" class="form-select" name="region">
+                      <option value="">All regions</option>
+                      <option value="americas">Americas</option>
+                      <option value="europe">Europe</option>
+                      <option value="asia-anz-mea">Asia / ANZ / MEA</option>
+                    </select>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <label class="form-label small fw-semibold text-body-secondary" for="wbr-finder-type">Event type</label>
+                    <select id="wbr-finder-type" class="form-select" name="type">
+                      <option value="">All types</option>
+                      <option value="conference">Conference</option>
+                      <option value="summit">Summit</option>
+                      <option value="connect">Connect</option>
+                      <option value="webinar">Webinar</option>
+                    </select>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <label class="form-label small fw-semibold text-body-secondary" for="wbr-finder-from">From</label>
+                    <select id="wbr-finder-from" class="form-select" name="from"></select>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <label class="form-label small fw-semibold text-body-secondary" for="wbr-finder-to">To</label>
+                    <select id="wbr-finder-to" class="form-select" name="to"></select>
+                  </div>
+                </div>
+                <button class="btn btn-wbr-primary d-md-none w-100 py-3 mt-4" type="button" data-bs-dismiss="offcanvas" data-bs-target="#wbr-finder-filters">Show results</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="wbr-finder-results" class="py-5">
+    <div class="container-xxl px-3 px-md-4 px-xl-5 pb-lg-4">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          <h2 id="wbr-finder-count" class="wbr-type-h3 fw-black me-2 mb-0" aria-live="polite"></h2>
+          <div id="wbr-finder-pills" class="d-flex flex-wrap gap-2"></div>
+          <button class="btn btn-link btn-sm text-decoration-none px-1" type="button" data-finder-clear hidden>Clear all</button>
+        </div>
+        <div class="hstack gap-2">
+          <span id="wbr-finder-sort-label" class="small fw-semibold text-body-secondary">Sort by</span>
+          <div class="btn-group" role="group" aria-labelledby="wbr-finder-sort-label">
+            <input id="wbr-finder-sort-date" class="btn-check" type="radio" name="sort" value="date" form="wbr-finder-form" checked>
+            <label class="btn btn-sm btn-wbr-outline" for="wbr-finder-sort-date">Date</label>
+            <input id="wbr-finder-sort-name" class="btn-check" type="radio" name="sort" value="name" form="wbr-finder-form">
+            <label class="btn btn-sm btn-wbr-outline" for="wbr-finder-sort-name">Name</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="wbr-finder-groups"></div>
+
+      <div id="wbr-finder-empty" class="wbr-finder-empty rounded-4 text-center px-4 py-5 mt-5" hidden>
+        <i class="fa-solid fa-calendar-xmark fs-3 text-body-tertiary" aria-hidden="true"></i>
+        <h3 class="wbr-type-h3 mt-3 mb-0">No Events Match These Filters</h3>
+        <p class="text-body-secondary mx-auto mt-2 mb-0">Try a wider date range or another region.</p>
+        <button class="btn btn-link text-decoration-none mt-2" type="button" data-finder-clear>Clear all filters</button>
+      </div>
+    </div>
+  </section>
+
+  <template id="wbr-finder-group-template">
+    <div class="mt-5">
+      <div class="d-flex align-items-baseline gap-3 pb-3">
+        <h3 class="wbr-type-h3 fw-black mb-0" data-field="label"></h3>
+        <span class="small text-body-secondary" data-field="count"></span>
+      </div>
+      <div class="border-top" data-field="rows"></div>
+    </div>
+  </template>
+
+  <template id="wbr-finder-pill-template">
+    <span class="d-inline-flex align-items-center gap-2 small fw-semibold text-dark bg-white border rounded-pill py-1 ps-3 pe-2"><span data-field="label"></span><button class="btn-close" type="button" data-field="remove"></button></span>
+  </template>
+
+  <template id="wbr-event-row-template">
+    <div class="wbr-event-row row g-0 position-relative border-bottom">
+      <div class="wbr-event-row-date col-auto d-flex flex-column justify-content-center border-end py-3 py-md-4 pe-2 pe-md-4 ps-md-1">
+        <div class="wbr-eyebrow small text-body-secondary" data-field="month"></div>
+        <div class="wbr-event-row-day wbr-type-h2 wbr-heading-font text-nowrap mt-1" data-field="days"></div>
+      </div>
+      <div class="col d-flex align-items-center gap-4 py-3 px-3 px-md-4">
+        <div class="wbr-event-row-logo d-none d-md-flex align-items-center flex-shrink-0"><img src="" alt="" class="mw-100 object-fit-contain" data-field="logo"></div>
+        <div>
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <a class="wbr-type-lead wbr-heading-font fw-bold stretched-link" href="#" data-field="name"></a>
+            <span class="wbr-tag badge rounded-pill text-uppercase text-body-secondary border" data-field="type"></span>
+          </div>
+          <div class="d-flex flex-wrap align-items-center column-gap-2 text-body-secondary mt-1">
+            <span class="wbr-color-square" data-field="sector-color"></span><span data-field="sector"></span>
+            <span class="hstack gap-2 ms-1"><i class="fa-solid fa-location-dot small text-body-tertiary" aria-hidden="true"></i><span data-field="city"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="wbr-event-row-actions col-12 col-md-auto hstack gap-2 position-relative z-2 pb-3 py-md-3 pe-md-1">
+        <a class="btn btn-sm btn-wbr-outline-light" href="#" data-field="sponsor">Sponsor</a>
+        <a class="btn btn-sm btn-wbr-blue" href="#" data-field="agenda">Agenda</a>
+      </div>
+    </div>
+  </template>
+
+</main>
+
+<footer id="wbr-footer" class="bg-dark text-white py-5">
+  <div class="container-xxl px-3 px-md-4 px-xl-5 pt-lg-3">
+    <div class="row g-4 g-md-5">
+      <div class="col-lg-4">
+        <a class="d-inline-block bg-white rounded-2 p-2" href="/"><img src="img/wbr-logo.jpg" alt="WBR home" class="wbr-nav-logo d-block"></a>
+        <p class="text-white text-opacity-75 mt-3 mb-0">Worldwide Business Research — the world's biggest name in B2B events.</p>
+        <form class="mt-4" action="#" method="post">
+          <label class="wbr-heading-font fw-bold text-white" for="wbr-footer-email">The weekly calendar</label>
+          <p class="small text-white text-opacity-75 mt-1 mb-0">What's on, who's speaking, what we published.</p>
+          <div class="d-flex gap-2 mt-3">
+            <input id="wbr-footer-email" class="form-control text-white bg-white bg-opacity-10 border-white border-opacity-25" type="email" name="email" placeholder="Work email" autocomplete="email" required>
+            <button class="btn btn-wbr-primary flex-shrink-0" type="submit">Sign up</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-8">
+        <div class="row row-cols-2 row-cols-md-4 g-4">
+          <nav class="col" aria-label="Events">
+            <h2 class="fs-6 fw-bold text-white mb-3">Events</h2>
+            <ul class="list-unstyled vstack gap-2 mb-0">
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="/conferences">All conferences</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">Connect events</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">Webinars</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="/conferences">Event calendar</a></li>
+            </ul>
+          </nav>
+          <nav class="col" aria-label="Industries">
+            <h2 class="fs-6 fw-bold text-white mb-3">Industries</h2>
+            <ul class="list-unstyled vstack gap-2 mb-0">
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="/conferences?q=retail">Retail &amp; eCommerce</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="/conferences?q=procurement">Procurement</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="/conferences?q=finance">Finance</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="/conferences?q=pharma">Supply chain &amp; pharma</a></li>
+            </ul>
+          </nav>
+          <nav class="col" aria-label="Work with us">
+            <h2 class="fs-6 fw-bold text-white mb-3">Work with us</h2>
+            <ul class="list-unstyled vstack gap-2 mb-0">
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">Sponsorship</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">Speak at an event</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">Media kit</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">Partnerships</a></li>
+            </ul>
+          </nav>
+          <nav class="col" aria-label="Company">
+            <h2 class="fs-6 fw-bold text-white mb-3">Company</h2>
+            <ul class="list-unstyled vstack gap-2 mb-0">
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">About WBR</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">WBR Insights</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">Careers</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">Press centre</a></li>
+              <li><a class="link-opacity-75 link-opacity-100-hover" href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 small text-white-50 border-top border-white border-opacity-10 mt-5 pt-4">
+      <div class="d-flex flex-wrap align-items-center gap-3 gap-md-4">
+        <span>© 2026 Worldwide Business Research</span>
+        <div class="hstack gap-3 fs-6">
+          <a class="link-opacity-75 link-opacity-100-hover" href="#" aria-label="WBR on LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+          <a class="link-opacity-75 link-opacity-100-hover" href="#" aria-label="WBR on X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a class="link-opacity-75 link-opacity-100-hover" href="#" aria-label="WBR on YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <nav aria-label="Legal">
+        <ul class="list-unstyled d-flex flex-wrap column-gap-4 row-gap-2 mb-0">
+          <li><a class="link-opacity-50 link-opacity-100-hover" href="#">Privacy policy</a></li>
+          <li><a class="link-opacity-50 link-opacity-100-hover" href="#">Terms</a></li>
+          <li><a class="link-opacity-50 link-opacity-100-hover" href="#">Cookie preferences</a></li>
+          <li><a class="link-opacity-50 link-opacity-100-hover" href="#">Modern slavery statement</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script defer src="js/scripts.js"></script>
+<script defer src="js/finder.js"></script>
+</body>
+</html>
